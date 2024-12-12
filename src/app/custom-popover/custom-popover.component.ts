@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { PopoverController } from '@ionic/angular';
 
 @Component({
   selector: 'app-custom-popover',
@@ -7,9 +8,23 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CustomPopoverComponent implements OnInit {
 
+  @Output() deleteId=new EventEmitter();
   @Input() triggerId: string = '';
-  constructor() { }
+  @Input() device:any;
+  clean_id:string='';
+  isDelete:boolean=false;
+  constructor(private popoverController: PopoverController) { }
 
-  ngOnInit() { }
+  ngOnInit() { 
+    
+  }
+
+  //This method opens the delete alert
+  delete(){
+    this.isDelete=true;
+
+     // Close the popover if it's open
+     this.popoverController.dismiss();
+  }
 
 }

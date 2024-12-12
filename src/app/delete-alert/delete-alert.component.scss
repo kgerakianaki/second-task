@@ -1,0 +1,96 @@
+.overlay {
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+    background: #001F544D 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    opacity: 1;
+    position: fixed;
+    z-index: 999999999999999999;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+
+
+.alertComponent {
+    width: 400px;
+    height: 440px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 12px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.close-alert {
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+    width: 26px;
+    height: 26px;
+    margin-left: 350px;
+    background-color:#F1F7FE ;
+    border-radius:10px;
+}
+
+.close-btn {
+    width: 16px;
+    height: 16px;
+    display: flex;
+    cursor: pointer;
+}
+
+.alert-photo {
+    width: 80px;
+    height: 80px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.title {
+    font-family: SF Pro Text;
+    font-size: 32px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #212121;
+}
+
+.subtitle {
+    font-family: SF Pro Text;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: #212121;
+    padding: 2% 4%;
+}
+
+.button-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 30px;
+    padding: 2% ;
+}
+
+ion-button {
+    --box-shadow: none;
+    --color:#212121;
+    --background: #F1F7FE;
+    --border: 1px solid #F1F7FE;
+    --font-family: SF Pro Text;
+    font-style: bold;
+    text-transform: capitalize;
+    cursor: pointer;
+    --border-radius: 7px;
+    min-width: 150px;
+    min-height: 50px;
+}
+
+ion-button.delete {
+    --background: #932222;
+    --color: #ffffff;
+}

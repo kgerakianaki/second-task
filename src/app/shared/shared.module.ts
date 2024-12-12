@@ -8,13 +8,15 @@ import { DeviceManagementComponent } from '../device-management/device-managemen
 import { DeviceComponent } from '../device/device.component';
 import { DeviceFormComponent } from '../device-form/device-form.component';
 import { CustomPopoverComponent } from '../custom-popover/custom-popover.component';
+import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
 
 @NgModule({
   declarations: [LoginComponent,
     DeviceManagementComponent,
     DeviceComponent,
     DeviceFormComponent,
-    CustomPopoverComponent
+    CustomPopoverComponent,
+    DeleteAlertComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { CustomPopoverComponent } from '../custom-popover/custom-popover.compone
     DeviceManagementComponent,
     DeviceComponent,
     DeviceFormComponent,
-    CustomPopoverComponent
+    CustomPopoverComponent,
+    DeleteAlertComponent
 
   ]
 })

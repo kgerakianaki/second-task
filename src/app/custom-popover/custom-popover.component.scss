@@ -4,11 +4,13 @@
     --color: white;
     --width: 200px;
     --border-radius: 8px;
+    cursor:pointer;
 }
 
 .popover-content {
-    -background: #ffffff;
+    --background: #ffffff;
 }
+
 
 .option-grid {
     background-color: #ffffff;
@@ -22,10 +24,27 @@
 
 }
 
-.centered {
+.centered-1 {
     display: flex;
     justify-content: space-around;
     align-items: center;
     width: 100%;
     padding: 5%;
+}
+
+
+.centered-2 {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    padding: 5%;
+}
+
+
+.centered-1:hover {
+    background-color: #F1F7FE;
+}
+.centered-2:hover {
+    background-color: #F1F7FE;
 }

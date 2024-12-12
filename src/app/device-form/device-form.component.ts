@@ -40,12 +40,18 @@ export class DeviceFormComponent  implements OnInit {
       //check if all the required fields are filled
       this.deviceService.postDevice(this.device).subscribe(
         response => {
+          if (response.status === 201) {
           this.close()//close the open modal
           this.updateList()//update the list of devices
           this.isLoading=false; //stopping the loader
           console.log('Device created successfully:', response);
+        } else {
+          //TODO: MODAL HERE 
+          console.error('Error creating device', response.message);
+        }
         },
         error => {
+          //TODO: MODAL HERE 
           console.error('Error creating device:', error);
         }
       );

@@ -1,0 +1,30 @@
+<div class="overlay">
+  <div class="alertComponent">
+
+    <div class="close-alert">
+      <img src="assets/images/close-btn/close.svg" alt="Close" class="close-btn" />
+    </div>
+
+    <div class="image">
+      <img src="assets/images/delete/delete.svg" alt="Alert-cross" class="alert-photo" />
+    </div>
+
+    <div class="title">
+      <label for="teleia" class="title" >{{ 'alert.title_delete' | translate }}</label>
+    </div>
+
+    <div class="subtitle">
+      {{ message }}
+    </div>
+
+    <div class="button-line" >
+      <ion-button >
+        {{ 'alert.cancel_button' | translate }}
+      </ion-button>
+      <ion-button class="delete">
+        {{ 'alert.confirm_button' | translate }}
+      </ion-button>
+    </div>
+
+  </div>
+</div>

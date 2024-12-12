@@ -36,5 +36,11 @@
         "p-identifier": "Aναγνωριστικό",
         "generate": "Δημιουργία",
         "add": "Προσθήκη"
+    },
+    "alert":{
+        "title_delete":"Διαγραφή;",
+        "subtitle_delete":"Είστε σίγουροι/ες πως επιθυμείτε να διαγράψετε τη συσκευή",
+        "cancel_button":"Aκύρωση",
+        "confirm_button":"Eπιβεβαιώση"
     }
 }

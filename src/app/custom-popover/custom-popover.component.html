@@ -4,7 +4,7 @@
     <ion-content class="popover-content">
       <ion-grid class="options-grid">
 
-        <ion-row class="centered">
+        <ion-row class="centered-1">
           <ion-col size="3">
             <ion-img src="assets/images/edit/blue/edit-text.svg" class="popover-img"></ion-img>
           </ion-col>
@@ -13,7 +13,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row class="centered">
+        <ion-row class="centered-2" (click)="delete()">
           <ion-col size="3">
             <ion-img src="assets/images/delete/delete.svg" class="popover-img"></ion-img>
           </ion-col>
@@ -27,3 +27,5 @@
     </ion-content>
   </ng-template>
 </ion-popover>
+
+<app-delete-alert [device]="device" *ngIf="isDelete"></app-delete-alert>
