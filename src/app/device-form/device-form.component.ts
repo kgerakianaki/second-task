@@ -12,6 +12,7 @@ export class DeviceFormComponent  implements OnInit {
   device:Device=new Device();
   isLoading:boolean=false;
   @Output() closeModal=new EventEmitter();
+  @Output() updateDeviceList=new EventEmitter();
   constructor(private deviceService:DeviceService) { }
 
   ngOnInit() {}
@@ -39,7 +40,9 @@ export class DeviceFormComponent  implements OnInit {
       //check if all the required fields are filled
       this.deviceService.postDevice(this.device).subscribe(
         response => {
-          this.isLoading=false; //TODO:Check this Kate
+          this.close()//close the open modal
+          this.updateList()//update the list of devices
+          this.isLoading=false; //stopping the loader
           console.log('Device created successfully:', response);
         },
         error => {
@@ -47,6 +50,11 @@ export class DeviceFormComponent  implements OnInit {
         }
       );
     } 
+  }
+
+  //This function sends emitter to update the Device List
+  updateList(){
+    this.updateDeviceList.emit(true);
   }
 
   //This function close the opened modal

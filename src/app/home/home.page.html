@@ -20,6 +20,6 @@
   </ion-header>
 
   <app-login *ngIf="!authorized"></app-login>
-  <app-device-management *ngIf="authorized"></app-device-management>
-  <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"></app-device-form>
+  <app-device-management *ngIf="authorized" [update]="updateList"></app-device-management>
+  <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"  (updateDeviceList)="update($event)"></app-device-form>
 </ion-content>

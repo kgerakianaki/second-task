@@ -9,7 +9,7 @@ import { AuthService } from '../services/auth.service';
 export class HomePage {
   authorized: boolean = false;
   addDevices: boolean = false;
-
+  updateList:boolean=false;
 
   constructor(private authService: AuthService) { }
 
@@ -35,4 +35,11 @@ export class HomePage {
   closeForm($event:boolean){
     this.addDevices=false;
   }
+
+  //Output to update the device list
+  update($event:boolean){
+  this.updateList=true;
+  }
+ 
+ 
 }

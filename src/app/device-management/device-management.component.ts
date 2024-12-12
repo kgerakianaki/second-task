@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { DeviceService } from '../services/device.service';
 import { trigger } from '@angular/animations';
 import { Device } from '../models/device.model';
@@ -14,6 +14,8 @@ export class DeviceManagementComponent implements OnInit {
   loading: boolean = false;
   noDevice: boolean = false;
 
+  @Input() update=false;
+
   constructor(private deviceService: DeviceService) { }
 
   ngOnInit(): void {
@@ -26,11 +28,20 @@ export class DeviceManagementComponent implements OnInit {
     }
   }
 
+  //This method checks about changes in the Inputs
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['update']) {
+      this.fetchDevices();
+    }
+  }
+  
+  //This method get the devices
   fetchDevices(): void {
     this.deviceService.getDevices().subscribe(
       (response) => {
         if (response.status === 200) {
           this.devices = response.data;
+          console.log(this.devices)
         }
       },
       (error) => {
@@ -39,4 +50,6 @@ export class DeviceManagementComponent implements OnInit {
       }
     );
   }
+
+  
 }
