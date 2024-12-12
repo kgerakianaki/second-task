@@ -1,0 +1,99 @@
+<div class="modal-overlay">
+  <div class="modal">
+    <!-- Modal Header -->
+
+    <div class="modal-header">
+      <ion-col size="11">
+        <h2>{{ 'device-form.title' | translate }}</h2>
+      </ion-col>
+      <ion-col size="1">
+        <div class="button-close">
+          <img src="assets/images/close-btn/close.svg" alt="Close" class="close-btn" />
+        </div>
+      </ion-col>
+    </div>
+
+    <!-- Modal Body -->
+    <div class="modal-body">
+      <ion-row class="with-box">
+        <ion-col size="1">
+          <div class="blue-rectangle"></div>
+        </ion-col>
+        <ion-col size="11">
+          <div class="form-title">{{ 'device-form.general-info' | translate }}</div>
+        </ion-col>
+      </ion-row>
+
+
+      <div class="first">
+        <div class="line-form">
+          <div class="attribute">
+            <div class="form-group">
+              <label for="manufacturer">{{ 'device-form.manufacturer' | translate }}</label>
+              <ion-input type="text" id="manufacturer" placeholder="{{ 'device-form.p-manufacturer' | translate }}" [(ngModel)]="device.manufacturer"
+                class="form-input">
+              </ion-input>
+            </div>
+          </div>
+          <div class="attribute">
+            <div class="form-group">
+              <label for="model">{{ 'device-form.model' | translate }}</label>
+              <ion-input type="text" id="model" placeholder="{{ 'device-form.p-model' | translate }}" [(ngModel)]="device.model"
+                class="form-input">
+              </ion-input>
+            </div>
+          </div>
+        </div>
+
+        <div class="os-line-form">
+          <div class="attribute">
+            <div class="form-group">
+              <label for="manufacturer">{{ 'device-form.p-os'| translate }}</label>
+              <ion-input type="text" id="p-os'" placeholder="{{ 'device-form.p-os'| translate }}" class="form-input" [(ngModel)]="device.platformDevice">
+              </ion-input>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <ion-row class="with-box">
+        <ion-col size="1">
+          <div class="blue-rectangle"></div>
+        </ion-col>
+        <ion-col size="11">
+          <div class="form-title">{{ 'device-form.identifier-info' | translate }}</div>
+        </ion-col>
+      </ion-row>
+
+
+      <div class="second">
+
+        <div class="form-group">
+          <label for="identifier">{{ 'device-form.identifier' | translate }}</label>
+          <div class="identifier-group">
+            <div class="not-allowed">
+            <ion-input type="text" id="identifier" placeholder="{{ 'device-form.p-identifier' | translate }}"
+            [(ngModel)]="device.deviceUUID"
+              class="form-input ident white-disabled">
+            </ion-input>
+          </div>
+            <ion-button class="create-btn" (click)="generateUuid()">
+              {{ 'device-form.generate' | translate }}
+            </ion-button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="footer">
+      <ion-button expand="block" class="submit-button" (click)="postDevice()" [disabled]="!checkData()">
+        {{ 'device-form.add' | translate }}
+      </ion-button>
+    </div>
+  </div>
+</div>

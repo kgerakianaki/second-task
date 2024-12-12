@@ -1,0 +1,54 @@
+.device-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2px;
+}
+
+.more {
+    width: 25px;
+    height: 25px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 5px 20px;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #ccc;
+}
+
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 15px;
+}
+
+.uuid {
+    color: #707070;
+    font-size: 14px;
+}
+
+.created-at {
+    color: #707070;
+    font-size: 14px;
+}
+
+.platform {
+    background-color: #0E89D0;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    min-width: 120px;
+    width: 120px;
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

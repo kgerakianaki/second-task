@@ -1,27 +1,33 @@
-#container {
-  text-align: center;
-
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
+ion-toolbar {
+  --background: #FFFFFF;
+  --color: #212121;
+}
+.inline{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+ion-title {
+  font-family: SF Pro Text;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: #212121;
+  padding: 0% 1%;
 }
 
-#container strong {
-  font-size: 20px;
-  line-height: 26px;
-}
-
-#container p {
+ion-button{
+  --background: #0E89D0;
+  --border-radius: 12px;
+  --box-shadow: none;
   font-size: 16px;
-  line-height: 22px;
-
-  color: #8c8c8c;
-
-  margin: 0;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 60px;
 }
 
-#container a {
-  text-decoration: none;
+.add-device{
+  min-width: 30px;
+  max-width: 30px;
 }

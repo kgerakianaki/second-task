@@ -1,0 +1,25 @@
+<div class="device-container">
+
+  <div class="no-device" *ngIf="!noDevice">
+    <img src="assets/images/devices/devices.svg" alt="devices" class="devices" />
+
+    <div class="title">
+      {{'device-management.no-device-title'|translate}}
+    </div>
+
+    <div class="subtitle">
+      {{'device-management.no-device-subtitle'|translate}}
+    </div>
+
+  </div>
+
+  <div class="existing-devices" *ngIf="noDevice">
+    <div class="your-devices">
+      {{'device-management.your-devices'|translate}}
+    </div>
+    <div *ngFor="let device of devices">
+      <app-device [device]="device"></app-device>
+    </div>
+
+  </div>
+</div>

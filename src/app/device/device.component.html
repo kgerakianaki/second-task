@@ -1,0 +1,25 @@
+<div class='device-container' *ngIf="device">
+
+  <ion-row class="header">
+    <ion-col size="11">
+      <div class="lines">
+        <h3>{{ device.manufacturer }} - {{ device.model }}</h3>
+        <p class="uuid">{{ device.deviceUUID }}</p>
+      </div>
+    </ion-col>
+    <ion-col size="1">
+      <ion-img id="testTrigger" src="assets/images/dots/black/more.png" class="more" alt="more"></ion-img>
+     
+    </ion-col>
+  </ion-row>
+
+<app-custom-popover [triggerId]="'testTrigger'"></app-custom-popover>
+
+  <hr>
+  <div class="footer">
+    <p class="created-at">{{ created_at }}</p>
+    <div class="platform">
+      {{ device.platformDevice }}
+    </div>
+  </div>
+</div>

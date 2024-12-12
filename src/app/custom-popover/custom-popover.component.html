@@ -1,0 +1,29 @@
+<ion-popover class="custom-popover" [trigger]="triggerId" triggerAction="click" mode="ios" arrow="true">
+  <ng-template>
+
+    <ion-content class="popover-content">
+      <ion-grid class="options-grid">
+
+        <ion-row class="centered">
+          <ion-col size="3">
+            <ion-img src="assets/images/edit/blue/edit-text.svg" class="popover-img"></ion-img>
+          </ion-col>
+          <ion-col size="9">
+            {{'device.edit'|translate}}
+          </ion-col>
+        </ion-row>
+
+        <ion-row class="centered">
+          <ion-col size="3">
+            <ion-img src="assets/images/delete/delete.svg" class="popover-img"></ion-img>
+          </ion-col>
+          <ion-col size="9">
+            {{'device.delete'|translate}}
+          </ion-col>
+        </ion-row>
+
+
+      </ion-grid>
+    </ion-content>
+  </ng-template>
+</ion-popover>

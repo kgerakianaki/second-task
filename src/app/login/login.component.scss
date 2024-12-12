@@ -1,0 +1,101 @@
+.login {
+    min-width: 30%;
+    max-width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 50px 0px;
+    gap: 20px;
+}
+
+
+.img-border {
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 10px;
+    display: inline-block;
+    text-align: center;
+    box-shadow: 1px 1px 1px 1px rgb(204, 204, 204);
+}
+
+img {
+    min-width: 35px;
+    min-height: 35px;
+    max-width: 100px;
+    max-height: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+
+.title {
+    font-size: 32px;
+    font-weight: 900;
+    color: #212121;
+}
+
+.subtitle {
+    font-size: 18px;
+    font-weight: 500;
+    color: #707070;
+    width: 450px;
+    text-align: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    width: 100%;
+    max-width: 450px;
+    margin: auto;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 8px 0 4px;
+    color: #333;
+    width: 100%;
+    text-align: left;
+}
+
+.form-input {
+    --background: #ffffff;
+    --border-color: #ffffff;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    width: 100%;
+    max-width: 400px;
+    height: 25px;
+    margin-bottom: 16px;
+}
+
+ion-input::part(native) {
+    font-size: 16px;
+    --border-width: 0px;
+    color: #333;
+}
+
+.login-button {
+    --background: #0E89D0;
+    --border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: capitalize;
+    width: 100%;
+    max-width: 400px;
+    height: 48px;
+}
+
+
+.password-toggle-icon {
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}

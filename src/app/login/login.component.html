@@ -1,0 +1,38 @@
+<div class="login">
+  <div class="img-border">
+    <img src="assets/images/devices/devices.svg" alt="devices" />
+  </div>
+  <div class="title">
+    {{'login.title'|translate}}
+  </div>
+
+  <div class="subtitle">
+    {{'login.subtitle'|translate}}
+  </div>
+  <form class="login-form">
+
+    <label for="email" class="form-label">
+      {{ 'login.email' | translate }}
+    </label>
+    <ion-input id="email" type="email" fill="solid" placeholder="{{ 'login.p-email' | translate }}" [(ngModel)]="email"
+      ngModel email errorText="Invalid email" name="email" class="form-input"></ion-input>
+
+
+    <label for="password" class="form-label">
+      {{ 'login.password' | translate }}
+    </label>
+    <ion-input id="password" [type]="passwordVisible ? 'text' : 'password'" fill="solid" [(ngModel)]="password"
+      name="password" placeholder="{{ 'login.p-password' | translate }}" class="form-input">
+      <ion-img [src]="passwordVisible ? 'assets/images/eye/view/view.png' : 'assets/images/eye/hide/hide.png'"
+        slot="end" (click)="togglePasswordVisibility()" class="password-toggle-icon">
+      </ion-img>
+    </ion-input>
+
+    <ion-button expand="block" class="login-button" [disabled]="!isValid()" (click)="login()" id="open-loading">
+      {{ 'login.connect' | translate }}
+    </ion-button>
+
+  </form>
+  <ion-loading class="custom-loading" [isOpen]="isLoading" message="Loading..." [duration]="3000"></ion-loading>
+
+</div>
