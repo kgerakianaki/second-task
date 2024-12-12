@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Device } from '../models/device.model';
+import { DeviceService } from '../services/device.service';
 @Component({
   selector: 'app-device-form',
   templateUrl: './device-form.component.html',
@@ -10,7 +11,7 @@ export class DeviceFormComponent  implements OnInit {
   //Uuid: string = '';
   device:Device=new Device();
  
-  constructor() { }
+  constructor(private deviceService:DeviceService) { }
 
   ngOnInit() {}
  
@@ -32,6 +33,17 @@ export class DeviceFormComponent  implements OnInit {
   // This function posts a new device
   postDevice(){
     console.log(this.device)
+    if (this.checkData()) {
+      //check if all the required fields are filled
+      this.deviceService.postDevice(this.device).subscribe(
+        response => {
+          console.log('Device created successfully:', response);
+        },
+        error => {
+          console.error('Error creating device:', error);
+        }
+      );
+    } 
   }
 
 }
