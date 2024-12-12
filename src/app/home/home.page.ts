@@ -30,4 +30,9 @@ export class HomePage {
   openAddDevice() {
     this.addDevices = true;
   }
+
+  // Method to close the device form
+  closeForm($event:boolean){
+    this.addDevices=false;
+  }
 }

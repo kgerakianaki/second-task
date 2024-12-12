@@ -7,7 +7,7 @@
         <h2>{{ 'device-form.title' | translate }}</h2>
       </ion-col>
       <ion-col size="1">
-        <div class="button-close">
+        <div class="button-close" (click)="close()">
           <img src="assets/images/close-btn/close.svg" alt="Close" class="close-btn" />
         </div>
       </ion-col>
@@ -97,3 +97,5 @@
     </div>
   </div>
 </div>
+
+<ion-loading class="custom-loading" [isOpen]="isLoading" message="Loading..." [duration]="3000"></ion-loading>

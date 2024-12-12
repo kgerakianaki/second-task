@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Device } from '../models/device.model';
 import { DeviceService } from '../services/device.service';
@@ -10,7 +10,8 @@ import { DeviceService } from '../services/device.service';
 export class DeviceFormComponent  implements OnInit {
   //Uuid: string = '';
   device:Device=new Device();
- 
+  isLoading:boolean=false;
+  @Output() closeModal=new EventEmitter();
   constructor(private deviceService:DeviceService) { }
 
   ngOnInit() {}
@@ -33,10 +34,12 @@ export class DeviceFormComponent  implements OnInit {
   // This function posts a new device
   postDevice(){
     console.log(this.device)
+    this.isLoading=true;
     if (this.checkData()) {
       //check if all the required fields are filled
       this.deviceService.postDevice(this.device).subscribe(
         response => {
+          this.isLoading=false; //TODO:Check this Kate
           console.log('Device created successfully:', response);
         },
         error => {
@@ -44,6 +47,11 @@ export class DeviceFormComponent  implements OnInit {
         }
       );
     } 
+  }
+
+  //This function close the opened modal
+  close(){
+    this.closeModal.emit(false);
   }
 
 }

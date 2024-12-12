@@ -21,5 +21,5 @@
 
   <app-login *ngIf="!authorized"></app-login>
   <app-device-management *ngIf="authorized"></app-device-management>
-  <app-device-form *ngIf="addDevices"></app-device-form>
+  <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"></app-device-form>
 </ion-content>
