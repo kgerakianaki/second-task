@@ -31,4 +31,7 @@ export class DeviceComponent implements OnInit {
       this.created_at = formattedDate;
     }
   }
+ 
+
+
 }

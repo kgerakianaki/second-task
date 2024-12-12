@@ -35,4 +35,10 @@ export class DeviceService {
     };
     return this.webService.post(this.endpoint,body,this.headers)
   }
+
+  // This method deletes a device by its _id
+  deleteDevice(deviceId: string): Observable<any> {
+    const url = `${this.endpoint}/${deviceId}`; //endpoint for deleting
+    return this.webService.delete(url, this.headers)
+  }
 }

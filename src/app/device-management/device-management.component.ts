@@ -30,8 +30,11 @@ export class DeviceManagementComponent implements OnInit {
 
   //This method checks about changes in the Inputs
   ngOnChanges(changes: SimpleChanges): void {
-    if (changes['update']) {
+    if (changes['update']) { //TODO: Bug happens only onces?!
+      if(this.update){
       this.fetchDevices();
+      this.update=false;
+      }
     }
   }
   

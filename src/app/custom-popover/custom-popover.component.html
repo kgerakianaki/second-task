@@ -28,4 +28,4 @@
   </ng-template>
 </ion-popover>
 
-<app-delete-alert [device]="device" *ngIf="isDelete"></app-delete-alert>
+<app-delete-alert [device]="device" *ngIf="isDelete" (deleteClose)="closeDeleteAlert($event)" ></app-delete-alert>

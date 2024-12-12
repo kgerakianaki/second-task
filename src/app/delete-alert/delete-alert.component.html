@@ -1,8 +1,8 @@
 <div class="overlay">
   <div class="alertComponent">
 
-    <div class="close-alert">
-      <img src="assets/images/close-btn/close.svg" alt="Close" class="close-btn" />
+    <div class="close-alert" (click)="close()">
+      <img src="assets/images/close-btn/close.svg" alt="Close" class="close-btn"/>
     </div>
 
     <div class="image">
@@ -18,13 +18,16 @@
     </div>
 
     <div class="button-line" >
-      <ion-button >
+      <ion-button (click)="close()">
         {{ 'alert.cancel_button' | translate }}
       </ion-button>
-      <ion-button class="delete">
+      <ion-button class="delete" (click)="confirm()">
         {{ 'alert.confirm_button' | translate }}
       </ion-button>
     </div>
 
   </div>
 </div>
+
+
+<ion-loading class="custom-loading" [isOpen]="isLoading" message="Loading..." [duration]="3000"></ion-loading>
