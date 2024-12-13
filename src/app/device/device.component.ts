@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Device } from '../models/device.model';
 import { SharedModule } from '../shared/shared.module';
 import { PopoverController } from '@ionic/angular';
@@ -11,6 +11,8 @@ import { CustomPopoverComponent } from '../custom-popover/custom-popover.compone
 })
 export class DeviceComponent implements OnInit {
   @Input() device: Device | undefined;
+  @Output() deviceToManagement=new EventEmitter();
+  @Output() updateManagement=new EventEmitter();
   created_at: String = '';
   constructor(private popocerCtrl: PopoverController) { }
 
@@ -32,6 +34,8 @@ export class DeviceComponent implements OnInit {
     }
   }
  
-
+  getUpdateFromPopover($event:any){
+    this.updateManagement.emit(true);
+  }
 
 }

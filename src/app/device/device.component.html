@@ -12,7 +12,7 @@
     </ion-col>
   </ion-row>
 
-<app-custom-popover [triggerId]="'testTrigger'+device._id" [device]="device"></app-custom-popover>
+<app-custom-popover [triggerId]="'testTrigger'+device._id" [device]="device" (updatePopover)="getUpdateFromPopover($event)"></app-custom-popover>
 
   <hr>
   <div class="footer">

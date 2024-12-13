@@ -18,7 +18,8 @@
       {{'device-management.your-devices'|translate}}
     </div>
     <div *ngFor="let device of devices">
-      <app-device [device]="device"></app-device>
+      <app-device [device]="device" 
+      (updateManagement)="getUpdate($event)"></app-device>
     </div>
 
   </div>

@@ -54,5 +54,8 @@ export class DeviceManagementComponent implements OnInit {
     );
   }
 
+  getUpdate($even:any){
+    this.fetchDevices();
+  }
   
 }

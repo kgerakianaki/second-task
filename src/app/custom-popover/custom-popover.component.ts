@@ -9,11 +9,13 @@ import { PopoverController } from '@ionic/angular';
 export class CustomPopoverComponent implements OnInit {
 
   @Output() deleteId=new EventEmitter();
+  @Output() updateListDevice=new EventEmitter();
   @Input() triggerId: string = '';
   @Input() device:any;
-  @Output() updateList=new EventEmitter();
   clean_id:string='';
   isDelete:boolean=false;
+  @Output() updatePopover=new EventEmitter();
+
   constructor(private popoverController: PopoverController) { }
 
   ngOnInit() { 
@@ -27,11 +29,15 @@ export class CustomPopoverComponent implements OnInit {
      // Close the popover if it's open
      this.popoverController.dismiss();
   }
-
+  
+//This method closes the alert
   closeDeleteAlert($event:boolean){
     this.isDelete=$event;
   }
 
-
+  updateDeleteHandle($event:boolean){
+    this.isDelete=false;//closing the delete Alert
+    this.updatePopover.emit(true);
+  }
 
 }
