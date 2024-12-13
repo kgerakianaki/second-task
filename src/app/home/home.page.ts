@@ -53,5 +53,19 @@ export class HomePage {
   getSearch($event:any){
   this.searchTerm=$event;
   }
+
+  deleteThem(){
+    this.isDelete=true;
+  }
  
+
+  closeDeleteAlert($event:boolean){
+    this.isDelete=$event;
+  }
+
+
+  updateFromDelete($event:boolean){
+    this.updateList=true;
+    this.isDelete=false;
+  }
 }

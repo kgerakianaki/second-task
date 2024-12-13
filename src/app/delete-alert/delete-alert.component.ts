@@ -14,7 +14,8 @@ export class DeleteAlertComponent  implements OnInit {
   isLoading:boolean=false;
   @Output() deleteClose = new EventEmitter();
   @Output() updateDelete= new EventEmitter();
-
+  @Output() updateDeleteAll= new EventEmitter();
+  @Input() one=false;
 
   constructor(
     private translate: TranslateService, 
@@ -24,11 +25,12 @@ export class DeleteAlertComponent  implements OnInit {
   }
 
   ngOnInit() {
-    if(this.device){
+    if(this.device&&this.one){
       this.translate.get('alert.subtitle_delete').subscribe((translation: string) => {
         this.message = translation+" "+this.device.manufacturer+"-"+this.device.model+";";// Assign the translated string to message
       });
     }
+    
     console.log(this.device)
   }
 
@@ -39,17 +41,32 @@ export class DeleteAlertComponent  implements OnInit {
 
    // Confirm deletion of the device 
    confirm() {
-    //this.close(); // Close the alert first 
-    this.isLoading = true; // Show loading state
-    this.deviceService.deleteDevice(this.device._id).subscribe(response => {
-      this.isLoading = false; // Hide loading state
-      if (response.status === 200) {
-        this.updateDelete.emit(true)
-      } else {
-        //TODO: Modal here
-        alert(response.message); // Handle failure
-      }
-    });
+    if(this.one){
+      this.isLoading = true; // Show loading state
+      this.deviceService.deleteDevice(this.device._id).subscribe(response => {
+        this.isLoading = false; // Hide loading state
+        if (response.status === 200) {
+          this.updateDelete.emit(true)
+        } else {
+          //TODO: Modal here
+          alert(response.message); // Handle failure
+        }
+      });
+    }
+    else{
+      console.log("paize")
+      this.isLoading = true; 
+      this.deviceService.deleteAllDevices().subscribe(response =>{
+        if(response.status=200){
+          this.isLoading = true; 
+          this.updateDeleteAll.emit(true)
+        }
+        else {
+          //TODO: Modal here
+          alert(response.message); // Handle failure
+        }
+      })
+    }
   }
 
 }

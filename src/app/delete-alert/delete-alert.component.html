@@ -13,8 +13,11 @@
       <label for="teleia" class="title" >{{ 'alert.title_delete' | translate }}</label>
     </div>
 
-    <div class="subtitle">
+    <div class="subtitle" *ngIf="one">
       {{ message }}
+    </div>
+    <div class="subtitle" *ngIf="!one">
+      {{ 'alert.d_subtitle' | translate }}
     </div>
 
     <div class="button-line" >

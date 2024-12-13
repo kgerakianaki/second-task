@@ -41,4 +41,12 @@ export class DeviceService {
     const url = `${this.endpoint}/${deviceId}`; //endpoint for deleting
     return this.webService.delete(url, this.headers)
   }
+
+
+  // Post method to delete all devices
+  deleteAllDevices(): Observable<any> {
+    const url = `${this.endpoint}/deleteAll`; // URL for deleting all devices
+    const body = {}; // Empty body
+    return this.webService.post(url, body, this.headers);  // Sending POST request with empty body
+  }
 }
