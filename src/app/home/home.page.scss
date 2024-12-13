@@ -31,3 +31,15 @@ ion-button{
   min-width: 30px;
   max-width: 30px;
 }
+
+.deleteAll{
+  font-weight: bold;
+  color:#932222;
+}
+
+.first-line-home{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  padding:15px;
+}

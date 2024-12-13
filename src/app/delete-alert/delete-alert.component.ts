@@ -37,15 +37,16 @@ export class DeleteAlertComponent  implements OnInit {
     this.deleteClose.emit(false);
   }
 
-   // Confirm deletion of the device (emitting valueEmitted)
+   // Confirm deletion of the device 
    confirm() {
-    //this.close(); // Close the alert first
+    //this.close(); // Close the alert first 
     this.isLoading = true; // Show loading state
     this.deviceService.deleteDevice(this.device._id).subscribe(response => {
       this.isLoading = false; // Hide loading state
       if (response.status === 200) {
         this.updateDelete.emit(true)
       } else {
+        //TODO: Modal here
         alert(response.message); // Handle failure
       }
     });

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -11,6 +11,8 @@ export class HomePage {
   addDevices: boolean = false;
   updateList:boolean=false;
   isDelete:boolean=false;
+  searchTerm:string='';
+  
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
@@ -47,5 +49,9 @@ export class HomePage {
   this.updateList=true;
   }
 
+
+  getSearch($event:any){
+  this.searchTerm=$event;
+  }
  
 }

@@ -17,10 +17,19 @@
     <div class="your-devices">
       {{'device-management.your-devices'|translate}}
     </div>
-    <div *ngFor="let device of devices">
-      <app-device [device]="device" 
-      (updateManagement)="getUpdate($event)"></app-device>
-    </div>
+    <ng-content *ngIf="searchOn">
+      <div *ngFor="let device of myfilteredDevices">
+        <app-device [device]="device" 
+        (updateManagement)="getUpdate($event)"></app-device>
+      </div>
+    </ng-content>
+
+    <ng-content *ngIf="!searchOn">
+      <div *ngFor="let device of devices">
+        <app-device [device]="device" 
+        (updateManagement)="getUpdate($event)"></app-device>
+      </div>
+    </ng-content>
 
   </div>
 </div>

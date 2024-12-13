@@ -9,6 +9,7 @@ import { DeviceComponent } from '../device/device.component';
 import { DeviceFormComponent } from '../device-form/device-form.component';
 import { CustomPopoverComponent } from '../custom-popover/custom-popover.component';
 import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
+import { CategorySearchComponent } from '../category-search/category-search.component';
 
 @NgModule({
   declarations: [LoginComponent,
@@ -16,7 +17,8 @@ import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
     DeviceComponent,
     DeviceFormComponent,
     CustomPopoverComponent,
-    DeleteAlertComponent
+    DeleteAlertComponent,
+    CategorySearchComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { DeleteAlertComponent } from '../delete-alert/delete-alert.component';
     DeviceComponent,
     DeviceFormComponent,
     CustomPopoverComponent,
-    DeleteAlertComponent
+    DeleteAlertComponent,
+    CategorySearchComponent
 
   ]
 })
