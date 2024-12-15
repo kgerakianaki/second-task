@@ -12,7 +12,6 @@ export class DeviceManagementComponent implements OnInit {
 
   devices: Device[] = [];
   loading: boolean = false;
-  noDevice: boolean = false;
   @Input() searchTerm='';
   @Input() update=false;
   myfilteredDevices: any[] = []; 
@@ -21,12 +20,6 @@ export class DeviceManagementComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchDevices();
-    if (this.devices.length == 0) {
-      this.noDevice = true;
-    }
-    else {
-      this.noDevice = false;
-    }
   }
 
   //This method checks about changes in the Inputs
@@ -40,14 +33,11 @@ export class DeviceManagementComponent implements OnInit {
 
     if(changes['searchTerm']){
      if(this.searchTerm!=''){
-      console.log("epae1")
       this.filterDevices();
       this.searchOn=true;
      }
      else{
-      console.log("epae2")
-      this.fetchDevices();
-      this.noDevice=true;
+      this.fetchDevices(); 
       this.searchOn=false;
      }
      
@@ -63,10 +53,6 @@ export class DeviceManagementComponent implements OnInit {
           device.model?.toLowerCase().includes(term)
         );
       });
-      if(this.myfilteredDevices.length==0){
-        this.noDevice=false;
-        
-      }
       
   }
   
@@ -76,7 +62,6 @@ export class DeviceManagementComponent implements OnInit {
       (response) => {
         if (response.status === 200) {
           this.devices = response.data;
-          console.log(this.devices)
         }
       },
       (error) => {

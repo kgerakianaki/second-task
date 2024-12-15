@@ -65,7 +65,7 @@ export class HomePage {
 
 
   updateFromDelete($event:boolean){
-    this.updateList=true;
+    this.update($event);
     this.isDelete=false;
   }
 }
