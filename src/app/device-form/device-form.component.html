@@ -1,10 +1,9 @@
 <div class="modal-overlay">
   <div class="modal">
     <!-- Modal Header -->
-
     <div class="modal-header">
       <ion-col size="11">
-        <h2>{{ 'device-form.title' | translate }}</h2>
+        <h2>{{ deviceEdit ? ('device-form.edit-title' | translate) : ('device-form.create-title' | translate) }}</h2>
       </ion-col>
       <ion-col size="1">
         <div class="button-close" (click)="close()">
@@ -24,22 +23,21 @@
         </ion-col>
       </ion-row>
 
-
       <div class="first">
         <div class="line-form">
           <div class="attribute">
             <div class="form-group">
               <label for="manufacturer">{{ 'device-form.manufacturer' | translate }}</label>
-              <ion-input type="text" id="manufacturer" placeholder="{{ 'device-form.p-manufacturer' | translate }}" [(ngModel)]="device.manufacturer"
-                class="form-input">
+              <ion-input type="text" id="manufacturer" placeholder="{{ 'device-form.p-manufacturer' | translate }}"
+                [(ngModel)]="device.manufacturer" (ngModelChange)="onFieldChange('manufacturer')" class="form-input">
               </ion-input>
             </div>
           </div>
           <div class="attribute">
             <div class="form-group">
               <label for="model">{{ 'device-form.model' | translate }}</label>
-              <ion-input type="text" id="model" placeholder="{{ 'device-form.p-model' | translate }}" [(ngModel)]="device.model"
-                class="form-input">
+              <ion-input type="text" id="model" placeholder="{{ 'device-form.p-model' | translate }}"
+                [(ngModel)]="device.model" (ngModelChange)="onFieldChange('model')" class="form-input">
               </ion-input>
             </div>
           </div>
@@ -48,15 +46,14 @@
         <div class="os-line-form">
           <div class="attribute">
             <div class="form-group">
-              <label for="manufacturer">{{ 'device-form.p-os'| translate }}</label>
-              <ion-input type="text" id="p-os'" placeholder="{{ 'device-form.p-os'| translate }}" class="form-input" [(ngModel)]="device.platformDevice">
+              <label for="platformDevice">{{ 'device-form.p-os' | translate }}</label>
+              <ion-input type="text" id="p-os" placeholder="{{ 'device-form.p-os' | translate }}"
+                [(ngModel)]="device.platformDevice" (ngModelChange)="onFieldChange('platformDevice')" class="form-input">
               </ion-input>
             </div>
           </div>
         </div>
-
       </div>
-
 
       <ion-row class="with-box">
         <ion-col size="1">
@@ -67,32 +64,27 @@
         </ion-col>
       </ion-row>
 
-
       <div class="second">
-
         <div class="form-group">
           <label for="identifier">{{ 'device-form.identifier' | translate }}</label>
           <div class="identifier-group">
             <div class="not-allowed">
-            <ion-input type="text" id="identifier" placeholder="{{ 'device-form.p-identifier' | translate }}"
-            [(ngModel)]="device.deviceUUID"
-              class="form-input ident white-disabled">
-            </ion-input>
-          </div>
+              <ion-input type="text" id="identifier" placeholder="{{ 'device-form.p-identifier' | translate }}"
+                [(ngModel)]="device.deviceUUID" class="form-input ident white-disabled">
+              </ion-input>
+            </div>
             <ion-button class="create-btn" (click)="generateUuid()">
-              {{ 'device-form.generate' | translate }}
+              {{ deviceEdit ? ('device-form.update' | translate) : ('device-form.generate' | translate) }}
             </ion-button>
           </div>
-
         </div>
-
       </div>
-
     </div>
 
     <div class="footer">
-      <ion-button expand="block" class="submit-button" (click)="postDevice()" [disabled]="!checkData()">
-        {{ 'device-form.add' | translate }}
+      <ion-button expand="block" class="submit-button" (click)="deviceEdit ? updateDevice() : postDevice()"
+        [disabled]="!checkData()">
+        {{ deviceEdit ? ('device-form.save' | translate) : ('device-form.add' | translate) }}
       </ion-button>
     </div>
   </div>

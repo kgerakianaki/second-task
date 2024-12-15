@@ -49,4 +49,11 @@ export class DeviceService {
     const body = {}; // Empty body
     return this.webService.post(url, body, this.headers);  // Sending POST request with empty body
   }
+
+  // Method to update a device (PATCH request)
+  updateDevice(deviceId: string, updatedData: any): Observable<any> {
+    const url = `${this.endpoint}/${deviceId}`; // Endpoint to update device
+    return this.webService.patch(url, updatedData, this.headers); // Send PATCH request
+  }
+
 }

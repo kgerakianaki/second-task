@@ -14,7 +14,10 @@ export class CustomPopoverComponent implements OnInit {
   @Input() device:any;
   clean_id:string='';
   isDelete:boolean=false;
+  isEdit=false;
   @Output() updatePopover=new EventEmitter();
+
+  
 
   constructor(private popoverController: PopoverController) { }
 
@@ -38,6 +41,25 @@ export class CustomPopoverComponent implements OnInit {
   updateDeleteHandle($event:boolean){
     this.isDelete=false;//closing the delete Alert
     this.updatePopover.emit(true);
+  }
+
+  edit(){
+    console.log("edit()")
+    this.isEdit=true;
+    // Close the popover if it's open
+    this.popoverController.dismiss();
+    
+  }
+
+  //Output to update the device list
+  update($event:boolean){
+    this.updatePopover.emit(true);
+  }
+  
+  
+  // Method to close the device form
+  closeForm($event:boolean){
+    this.isEdit=false;
   }
 
 }

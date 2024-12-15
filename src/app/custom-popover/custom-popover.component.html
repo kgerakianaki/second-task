@@ -4,7 +4,7 @@
     <ion-content class="popover-content">
       <ion-grid class="options-grid">
 
-        <ion-row class="centered-1">
+        <ion-row class="centered-1" (click)="edit()">
           <ion-col size="3">
             <ion-img src="assets/images/edit/blue/edit-text.svg" class="popover-img"></ion-img>
           </ion-col>
@@ -33,3 +33,6 @@
   *ngIf="isDelete" 
   (deleteClose)="closeDeleteAlert($event)"
   (updateDelete)="updateDeleteHandle($event)"></app-delete-alert>
+
+<app-device-form *ngIf="isEdit" (closeModal)="closeForm($event)" 
+  (updateDeviceList)="update($event)"[deviceEdit]="device"></app-device-form>

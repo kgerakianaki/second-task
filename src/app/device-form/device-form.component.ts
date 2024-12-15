@@ -1,71 +1,122 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Device } from '../models/device.model';
 import { DeviceService } from '../services/device.service';
+
 @Component({
   selector: 'app-device-form',
   templateUrl: './device-form.component.html',
   styleUrls: ['./device-form.component.scss'],
 })
-export class DeviceFormComponent  implements OnInit {
-  //Uuid: string = '';
-  device:Device=new Device();
-  isLoading:boolean=false;
-  @Output() closeModal=new EventEmitter();
-  @Output() updateDeviceList=new EventEmitter();
-  constructor(private deviceService:DeviceService) { }
+export class DeviceFormComponent implements OnInit {
+  device: Device = new Device();  // Empty device object initially
+  isLoading: boolean = false;
+  @Output() closeModal = new EventEmitter();
+  @Output() updateDeviceList = new EventEmitter();
+  @Input() deviceEdit: Device | undefined;  // Input property for device to edit
+  originalDevice: Device = new Device();  // Store original device for comparison
 
-  ngOnInit() {}
- 
-  // The following function generates a random UUID.
-  generateUuid(): void {
-    console.log("I am called")
-    this.device.deviceUUID = uuidv4();
-    console.log(this.device.deviceUUID)
+  changedFields: Set<string> = new Set();  // Track changed fields
+
+  constructor(private deviceService: DeviceService) {}
+
+  ngOnInit() {
+    this.initializeDeviceData();
   }
 
-  //This method checks the if the user has enter the device data
-  checkData(){
-    if (!this.device.manufacturer || !this.device.model || !this.device.platformDevice || !this.device.deviceUUID) {
-      return false; // Return false if any required field is missing
+  initializeDeviceData() {
+    // If editing an existing device, copy the device data into the `device` and `originalDevice` properties
+    if (this.deviceEdit) {
+      this.device = { ...this.deviceEdit };  // Copy the device data for editing
+      this.originalDevice = { ...this.deviceEdit };  // Store original device data for comparison
+    } else {
+      // For creating a new device, initialize with an empty or default device
+      this.device = new Device();
+      this.originalDevice = new Device();
     }
-    return true;
   }
 
-  // This function posts a new device
-  postDevice(){
-    console.log(this.device)
-    this.isLoading=true;
+  generateUuid(): void {
+    this.device.deviceUUID = uuidv4();  // Generate a new UUID
+    console.log(this.device.deviceUUID);
+  }
+
+  checkData(): boolean {
+    // Check if all required fields are filled before submitting
+    return this.device.manufacturer && this.device.model && this.device.platformDevice && this.device.deviceUUID ? true : false;
+  }
+
+  postDevice(): void {
+    console.log(this.device);
+    this.isLoading = true;
+
     if (this.checkData()) {
-      //check if all the required fields are filled
       this.deviceService.postDevice(this.device).subscribe(
-        response => {
+        (response) => {
           if (response.status === 201) {
-          this.close()//close the open modal
-          this.updateList()//update the list of devices
-          this.isLoading=false; //stopping the loader
-          console.log('Device created successfully:', response);
-        } else {
-          //TODO: MODAL HERE 
-          console.error('Error creating device', response.message);
-        }
+            this.close();  // Close the modal on success
+            this.updateList();  // Update the device list
+            this.isLoading = false;  // Stop the loader
+            console.log('Device created successfully:', response);
+          } else {
+            console.error('Error creating device', response.message);
+          }
         },
-        error => {
-          //TODO: MODAL HERE 
+        (error) => {
           console.error('Error creating device:', error);
         }
       );
-    } 
+    } else {
+      this.isLoading = false;  // Stop the loader if data is incomplete
+    }
   }
 
-  //This function sends emitter to update the Device List
-  updateList(){
+  onFieldChange(field: keyof Device): void {
+    // Track changes in the fields and compare with original data
+    if (this.device[field] !== this.originalDevice[field]) {
+      this.changedFields.add(field);  // Add to changed fields
+    } else {
+      this.changedFields.delete(field);  // Remove from changed fields if reverted
+    }
+  }
+
+  updateDevice(): void {
+    // Only proceed if there are changes in the device data
+    const updatedData: Partial<Device> = {};
+    if (this.changedFields.size > 0) {
+      // Prepare updated fields for the API request
+      if (this.device.manufacturer !== this.originalDevice.manufacturer) updatedData['manufacturer'] = this.device.manufacturer;
+      if (this.device.model !== this.originalDevice.model) updatedData['model'] = this.device.model;
+      if (this.device.platformDevice !== this.originalDevice.platformDevice) updatedData['platformDevice'] = this.device.platformDevice;
+      if (this.device.deviceUUID !== this.originalDevice.deviceUUID) updatedData['deviceUUID'] = this.device.deviceUUID;
+
+      // Proceed only if there are changes to update
+      if (Object.keys(updatedData).length) {
+        this.isLoading = true;
+        if (this.device._id) {
+          this.deviceService.updateDevice(this.device._id, updatedData).subscribe(
+            (response) => {
+              this.isLoading = false;
+              this.close();  // Close the modal after updating
+              this.updateList();  // Update the device list
+            },
+            (error) => {
+              this.isLoading = false;
+              console.error('Error updating device:', error);
+            }
+          );
+        }
+      }
+    }
+  }
+
+  updateList(): void {
+    // Emit event to notify the parent component to update the device list
     this.updateDeviceList.emit(true);
   }
 
-  //This function close the opened modal
-  close(){
+  close(): void {
+    // Emit event to close the modal
     this.closeModal.emit(false);
   }
-
 }
