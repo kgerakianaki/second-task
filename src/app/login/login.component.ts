@@ -74,10 +74,12 @@ export class LoginComponent implements OnInit {
       }
     );
   }
+  
   //This method is responsible for checking if the form is valid
   isValid() {
     return this.email.trim().length > 0 && this.password.trim().length > 0
   }
+
   //This method is responsible for toggling the password visibility
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;

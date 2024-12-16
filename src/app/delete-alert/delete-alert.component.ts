@@ -82,12 +82,12 @@ export class DeleteAlertComponent  implements OnInit {
        // Confirm deletion of all devices
       this.isLoading = true; // Show loading state
       // Subscribe to get the list of devices
-    let dontDelete=false;
+    let dontDelete=true;
     this.deviceService.getDevices().subscribe(devices => {
       // Check if there are devices to delete
       console.log(devices.data.length)
       if (devices.data.length ==0) {
-        dontDelete=true;
+        dontDelete=false;
         // Show warning if no devices are available
         Swal.fire({
           icon: 'warning',
@@ -103,8 +103,7 @@ export class DeleteAlertComponent  implements OnInit {
         this.isLoading = false; // Hide loading state
         return; // Stop further execution if no devices
       }
-    });
-      if(dontDelete){
+      else{
         this.deviceService.deleteAllDevices().subscribe(response => {
           this.isLoading = false; // Hide loading state
           if (response.status === 200) {
@@ -137,6 +136,10 @@ export class DeleteAlertComponent  implements OnInit {
           }
         });
       }
+    });
+    
+        
+      
     }
   }
 
