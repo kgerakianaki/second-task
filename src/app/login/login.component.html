@@ -14,14 +14,14 @@
     <label for="email" class="form-label">
       {{ 'login.email' | translate }}
     </label>
-    <ion-input id="email" type="email" fill="solid" placeholder="{{ 'login.p-email' | translate }}" [(ngModel)]="email"
-      ngModel email errorText="Invalid email" name="email" class="form-input"></ion-input>
+    <ion-input id="email" type="email" placeholder="{{ 'login.p-email' | translate }}" [(ngModel)]="email"
+      ngModel email errorText="{{ 'login.invalid-email' | translate }}" name="email" class="form-input"></ion-input>
 
 
     <label for="password" class="form-label">
       {{ 'login.password' | translate }}
     </label>
-    <ion-input id="password" [type]="passwordVisible ? 'text' : 'password'" fill="solid" [(ngModel)]="password"
+    <ion-input id="password" [type]="passwordVisible ? 'text' : 'password'"  [(ngModel)]="password"
       name="password" placeholder="{{ 'login.p-password' | translate }}" class="form-input">
       <ion-img [src]="passwordVisible ? 'assets/images/eye/view/view.png' : 'assets/images/eye/hide/hide.png'"
         slot="end" (click)="togglePasswordVisibility()" class="password-toggle-icon">

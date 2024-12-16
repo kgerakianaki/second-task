@@ -1,32 +1,50 @@
-<ion-popover class="custom-popover" [trigger]="triggerId" triggerAction="click" mode="ios" arrow="true">
+<ion-popover 
+  class="custom-popover" 
+  [trigger]="triggerId" 
+  triggerAction="click" 
+  mode="ios" 
+  arrow="true" 
+  role="dialog"
+  aria-labelledby="popoverTitle" 
+  aria-hidden="true">
+  
   <ng-template>
-
     <ion-content class="popover-content">
       <ion-grid class="options-grid">
 
+        <!-- Edit Option Row -->
         <ion-row class="centered-1" (click)="edit()">
           <ion-col size="3">
-            <ion-img src="assets/images/edit/blue/edit-text.svg" class="popover-img"></ion-img>
+            <ion-img 
+              src="assets/images/edit/blue/edit-text.svg" 
+              alt="{{'device.edit' | translate}}" 
+              class="popover-img">
+            </ion-img>
           </ion-col>
           <ion-col size="9">
-            {{'device.edit'|translate}}
+            {{ 'device.edit' | translate }}
           </ion-col>
         </ion-row>
 
+        <!-- Delete Option Row -->
         <ion-row class="centered-2" (click)="delete()">
           <ion-col size="3">
-            <ion-img src="assets/images/delete/delete.svg" class="popover-img"></ion-img>
+            <ion-img 
+              src="assets/images/delete/delete.svg" 
+              alt="{{'device.delete' | translate}}" 
+              class="popover-img">
+            </ion-img>
           </ion-col>
           <ion-col size="9">
-            {{'device.delete'|translate}}
+            {{ 'device.delete' | translate }}
           </ion-col>
         </ion-row>
-
 
       </ion-grid>
     </ion-content>
   </ng-template>
 </ion-popover>
+
 
 <app-delete-alert 
   [device]="device" [one]="true"

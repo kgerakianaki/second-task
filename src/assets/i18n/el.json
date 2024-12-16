@@ -18,7 +18,8 @@
         "connect":"Σύνδεση",
         "success_title": "Επιτυχής Σύνδεση",
         "sucess_text": "Συνδεθήκατε επιτυχώς!",
-        "error_title":"Αποτυχία Σύνδεσης"
+        "error_title":"Αποτυχία Σύνδεσης",
+        "invalid-email":"Μη έγκυρη διεύθυνση email"
     },
     "device-management": {
         "no-device-title": "Διαχείριση Συσκευών",

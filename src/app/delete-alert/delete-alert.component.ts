@@ -85,8 +85,8 @@ export class DeleteAlertComponent  implements OnInit {
     let dontDelete=false;
     this.deviceService.getDevices().subscribe(devices => {
       // Check if there are devices to delete
-      console.log(devices.length)
-      if (devices.length === undefined) {
+      console.log(devices.data.length)
+      if (devices.data.length ==0) {
         dontDelete=true;
         // Show warning if no devices are available
         Swal.fire({

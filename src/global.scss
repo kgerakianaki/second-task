@@ -22,3 +22,35 @@ ion-content {
     font-size: 16px; 
     border-radius: 12px;  
 }
+
+
+/* Form Input Styles */
+.form-input {
+    --background: #ffffff;
+    --border-color: #ffffff;
+    width: 100%;
+    max-width: 500px;
+    max-height: 20px;
+    margin-bottom: 16px;
+    border-radius: 12px; 
+}
+
+/* Ion-Input Styles */
+ion-input {
+    --background: #ffffff;
+    --border-radius: 12px; /* Ensures the ion-input has a 12px border-radius */
+    --color: #212121;
+    font-size: 16px;
+    font-weight: 900; /* Ensures the text is bold */
+}
+
+/* Apply border-radius to ion-input's native part if required */
+ion-input::part(native) {
+    border-radius: 12px; /* Apply the same border-radius here for consistency */
+}
+
+/* Adjust padding-left for the native input part */
+.native-input.sc-ion-input-md {
+    padding-left: 10px; 
+    padding-right:10px;
+}

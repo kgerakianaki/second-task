@@ -15,12 +15,8 @@
     <!-- Modal Body -->
     <div class="modal-body">
       <ion-row class="with-box">
-        <ion-col size="1">
-          <div class="blue-rectangle"></div>
-        </ion-col>
-        <ion-col size="11">
-          <div class="form-title">{{ 'device-form.general-info' | translate }}</div>
-        </ion-col>
+        <div class="blue-rectangle"></div>
+        <div class="form-title">{{ 'device-form.general-info' | translate }}</div>
       </ion-row>
 
       <div class="first">
@@ -46,7 +42,7 @@
         <div class="os-line-form">
           <div class="attribute">
             <div class="form-group">
-              <label for="platformDevice">{{ 'device-form.p-os' | translate }}</label>
+              <label for="platformDevice">{{ 'device-form.os' | translate }}</label>
               <ion-input type="text" id="p-os" placeholder="{{ 'device-form.p-os' | translate }}"
                 [(ngModel)]="device.platformDevice" (ngModelChange)="onFieldChange('platformDevice')" class="form-input">
               </ion-input>
@@ -56,18 +52,14 @@
       </div>
 
       <ion-row class="with-box">
-        <ion-col size="1">
-          <div class="blue-rectangle"></div>
-        </ion-col>
-        <ion-col size="11">
-          <div class="form-title">{{ 'device-form.identifier-info' | translate }}</div>
-        </ion-col>
+        <div class="blue-rectangle"></div>
+        <div class="form-title">{{ 'device-form.identifier-info' | translate }}</div>
       </ion-row>
 
       <div class="second">
         <div class="form-group">
           <label for="identifier">{{ 'device-form.identifier' | translate }}</label>
-          <div class="identifier-group">
+          <div class="identifier-group-anagnoristiko">
             <div class="not-allowed">
               <ion-input type="text" id="identifier" placeholder="{{ 'device-form.p-identifier' | translate }}"
                 [(ngModel)]="device.deviceUUID" (ngModelChange)="onFieldChange('deviceUUID')" class="form-input ident white-disabled">
