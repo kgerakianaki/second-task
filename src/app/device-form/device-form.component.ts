@@ -40,8 +40,7 @@ export class DeviceFormComponent implements OnInit {
 
   generateUuid(): void {
     this.device.deviceUUID = uuidv4();  // Generate a new UUID
-    this.onFieldChange('deviceUUID');
-    console.log(this.device.deviceUUID);
+    this.onFieldChange('deviceUUID');   // In case of change UUID add field
   }
 
   checkData(): boolean {

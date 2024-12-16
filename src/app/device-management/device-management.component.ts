@@ -37,6 +37,7 @@ export class DeviceManagementComponent implements OnInit {
       this.searchOn=true;
      }
      else{
+      //if no searching term then fetch all devices again and close the searchOn
       this.fetchDevices(); 
       this.searchOn=false;
      }
