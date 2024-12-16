@@ -70,7 +70,7 @@
           <div class="identifier-group">
             <div class="not-allowed">
               <ion-input type="text" id="identifier" placeholder="{{ 'device-form.p-identifier' | translate }}"
-                [(ngModel)]="device.deviceUUID" class="form-input ident white-disabled">
+                [(ngModel)]="device.deviceUUID" (ngModelChange)="onFieldChange('deviceUUID')" class="form-input ident white-disabled">
               </ion-input>
             </div>
             <ion-button class="create-btn" (click)="generateUuid()">

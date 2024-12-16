@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-
+import { ToastController } from '@ionic/angular';
+import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -15,29 +17,60 @@ export class LoginComponent implements OnInit {
   passwordVisible: boolean = false;
   isLoading: boolean = false;
 
-  constructor(private authService: AuthService) {
-
+  constructor(private authService: AuthService, private toastController: ToastController,private translate: TranslateService ) {
   }
 
   ngOnInit() { }
 
   //This method is responsible for log in
-  login() {
-    this.isLoading = true;  // Show loading spinner
+  async login() {
+    this.isLoading = true; // Show loading spinner
 
     this.authService.login(this.email, this.password).subscribe(
       (response) => {
         this.authService.setToken(response.token);
         this.authService.setUserData(response.data[0]);
-        this.isLoading = false;
+        this.isLoading = false; //Close loading spinner
         console.log(response);
+
+        // Fetch the translated success message
+        this.translate.get('login.success_title').subscribe((successTitle: string) => {
+          this.translate.get('login.sucess_text').subscribe((successText: string) => {
+            // Show success notification
+            Swal.fire({
+              icon: 'success',
+              title: successTitle,  
+              text: successText,   
+              timer: 3000,
+              showConfirmButton: false,
+              position: 'top',
+              toast: true,
+              background: '#28a745', // Green background for success
+              color: '#fff',          
+            });
+          });
+        });
       },
       (error) => {
         console.log('Error occurred during login', error);
-        //TODO: Something fancier
-        this.isLoading = false;
-        alert(error.error?.message);
 
+        // Fetch the translated error message
+        this.translate.get('login.error_title').subscribe((errorTitle: string) => {
+          // Close loader and show error notification
+          this.isLoading = false;
+
+          Swal.fire({
+            icon: 'error',
+            title: errorTitle,
+            text: error.error?.message,
+            timer: 3000,
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+            background: '#932222', // Red background for error
+            color: '#ffffff',         
+          });
+        });
       }
     );
   }
@@ -49,5 +82,6 @@ export class LoginComponent implements OnInit {
   togglePasswordVisibility() {
     this.passwordVisible = !this.passwordVisible;
   }
+
 
 }

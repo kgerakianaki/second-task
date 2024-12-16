@@ -2,6 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Device } from '../models/device.model';
 import { DeviceService } from '../services/device.service';
+import { TranslateService } from '@ngx-translate/core';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-device-form',
@@ -18,7 +20,7 @@ export class DeviceFormComponent implements OnInit {
 
   changedFields: Set<string> = new Set();  // Track changed fields
 
-  constructor(private deviceService: DeviceService) {}
+  constructor(private deviceService: DeviceService, private translate:TranslateService) {}
 
   ngOnInit() {
     this.initializeDeviceData();
@@ -38,6 +40,7 @@ export class DeviceFormComponent implements OnInit {
 
   generateUuid(): void {
     this.device.deviceUUID = uuidv4();  // Generate a new UUID
+    this.onFieldChange('deviceUUID');
     console.log(this.device.deviceUUID);
   }
 
@@ -49,7 +52,7 @@ export class DeviceFormComponent implements OnInit {
   postDevice(): void {
     console.log(this.device);
     this.isLoading = true;
-
+  
     if (this.checkData()) {
       this.deviceService.postDevice(this.device).subscribe(
         (response) => {
@@ -58,12 +61,52 @@ export class DeviceFormComponent implements OnInit {
             this.updateList();  // Update the device list
             this.isLoading = false;  // Stop the loader
             console.log('Device created successfully:', response);
+  
+            // Success toast with SweetAlert2
+            Swal.fire({
+              icon: 'success',
+              title: this.translate.instant('device-form.create-success-title'),
+              text: this.translate.instant('device-form.create-success-text'),
+              timer: 3000,
+              showConfirmButton: false,
+              position: 'top',
+              toast: true,
+              background: '#28a745', // Green background for success
+              color: '#fff', // White text
+            });
           } else {
             console.error('Error creating device', response.message);
+  
+            // Error toast with SweetAlert2
+            Swal.fire({
+              icon: 'error',
+              title: this.translate.instant('device-form.create-error-title'),
+              text: response.message || this.translate.instant('device-form.create-error-text'),
+              timer: 3000,
+              showConfirmButton: false,
+              position: 'top',
+              toast: true,
+              background: '#932222', // Red background for error
+              color: '#fff', // White text
+            });
           }
         },
         (error) => {
           console.error('Error creating device:', error);
+  
+          // Error toast with SweetAlert2
+          Swal.fire({
+            icon: 'error',
+            title: this.translate.instant('device-form.create-error-title'),
+            text: error.message || this.translate.instant('device-form.create-error-text'),
+            timer: 3000,
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+            background: '#932222', // Red background for error
+            color: '#fff', // White text
+          });
+          this.isLoading = false;  // Stop the loader
         }
       );
     } else {
@@ -72,8 +115,10 @@ export class DeviceFormComponent implements OnInit {
   }
 
   onFieldChange(field: keyof Device): void {
+    console.log("hhhhhhh")
     // Track changes in the fields and compare with original data
     if (this.device[field] !== this.originalDevice[field]) {
+      console.log(this.device[field])
       this.changedFields.add(field);  // Add to changed fields
     } else {
       this.changedFields.delete(field);  // Remove from changed fields if reverted
@@ -83,13 +128,17 @@ export class DeviceFormComponent implements OnInit {
   updateDevice(): void {
     // Only proceed if there are changes in the device data
     const updatedData: Partial<Device> = {};
+
+    
+    console.log(this.changedFields)
     if (this.changedFields.size > 0) {
+
       // Prepare updated fields for the API request
       if (this.device.manufacturer !== this.originalDevice.manufacturer) updatedData['manufacturer'] = this.device.manufacturer;
       if (this.device.model !== this.originalDevice.model) updatedData['model'] = this.device.model;
       if (this.device.platformDevice !== this.originalDevice.platformDevice) updatedData['platformDevice'] = this.device.platformDevice;
       if (this.device.deviceUUID !== this.originalDevice.deviceUUID) updatedData['deviceUUID'] = this.device.deviceUUID;
-
+    
       // Proceed only if there are changes to update
       if (Object.keys(updatedData).length) {
         this.isLoading = true;
@@ -99,10 +148,36 @@ export class DeviceFormComponent implements OnInit {
               this.isLoading = false;
               this.close();  // Close the modal after updating
               this.updateList();  // Update the device list
+  
+              // Success toast with SweetAlert2
+              Swal.fire({
+                icon: 'success',
+                title: this.translate.instant('device-form.update-success-title'),
+                text: this.translate.instant('device-form.update-success-text'),
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top',
+                toast: true,
+                background: '#28a745', // Green background for success
+                color: '#fff', // White text
+              });
             },
             (error) => {
               this.isLoading = false;
               console.error('Error updating device:', error);
+  
+              // Error toast with SweetAlert2
+              Swal.fire({
+                icon: 'error',
+                title: this.translate.instant('device-form.update-error-title'),
+                text: error.message || this.translate.instant('device-form.update-error-text'),
+                timer: 3000,
+                showConfirmButton: false,
+                position: 'top',
+                toast: true,
+                background: '#932222', // Red background for error
+                color: '#fff', // White text
+              });
             }
           );
         }

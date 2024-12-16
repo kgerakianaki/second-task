@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, output, Output } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core'; 
 import { DeviceService } from '../services/device.service';
+import Swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
+
 @Component({
   selector: 'app-delete-alert',
   templateUrl: './delete-alert.component.html',
@@ -38,35 +40,79 @@ export class DeleteAlertComponent  implements OnInit {
   close(){
     this.deleteClose.emit(false);
   }
-
-   // Confirm deletion of the device 
-   confirm() {
-    if(this.one){
+// Confirm deletion
+  confirm() {
+    if(this.one) {
+       // Confirm deletion of the single device
       this.isLoading = true; // Show loading state
       this.deviceService.deleteDevice(this.device._id).subscribe(response => {
         this.isLoading = false; // Hide loading state
         if (response.status === 200) {
-          this.updateDelete.emit(true)
+          // Success: Show success notification
+          Swal.fire({
+            icon: 'success',
+            title: this.translate.instant('alert.title_delete_notif'),
+            text: this.translate.instant('alert.success_delete'),
+            background: '#28a745', // Green color for success
+            color: '#fff', // White text color
+            timer: 3000, // Timeout after 3 seconds
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+          });
+          this.updateDelete.emit(true); // Successfully deleted
         } else {
-          //TODO: Modal here
-          alert(response.message); // Handle failure
+          // Error: Show error notification
+          Swal.fire({
+            icon: 'error',
+            title: this.translate.instant('alert.title_delete_notif'),
+            text: response.message,
+            background: '#932222', // Red color background
+            color: '#fff', // White text color
+            timer: 3000, // Timeout after 3 seconds
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+          });
+        }
+      });
+
+    } else {
+       // Confirm deletion of all devices
+      this.isLoading = true; // Show loading state
+      this.deviceService.deleteAllDevices().subscribe(response => {
+        this.isLoading = false; // Hide loading state
+        if (response.status === 200) {
+          // Success: Show success notification
+          Swal.fire({
+            icon: 'success',
+            title: this.translate.instant('alert.title_delete_notif'),
+            text: this.translate.instant('alert.success_delete'),
+            background: '#28a745', // Green color for success
+            color: '#fff', // White text color
+            timer: 3000, // Timeout after 3 seconds
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+          });
+          this.updateDeleteAll.emit(true); // Successfully deleted all devices
+        } else {
+          // Error: Show error notification
+          Swal.fire({
+            icon: 'error',
+            title: this.translate.instant('alert.title_delete_notif'),
+            text: response.message,
+            background: '#932222', // Red color background
+            color: '#fff', // White text color
+            timer: 3000, // Timeout after 3 seconds
+            showConfirmButton: false,
+            position: 'top',
+            toast: true,
+          });
         }
       });
     }
-    else{
-      console.log("paize")
-      this.isLoading = true; 
-      this.deviceService.deleteAllDevices().subscribe(response =>{
-        if(response.status=200){
-          this.isLoading = true; 
-          this.updateDeleteAll.emit(true)
-        }
-        else {
-          //TODO: Modal here
-          alert(response.message); // Handle failure
-        }
-      })
-    }
   }
+
 
 }
