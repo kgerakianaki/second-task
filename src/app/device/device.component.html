@@ -4,12 +4,14 @@
     <ion-col size="11">
       <div class="lines">
         <h3>{{ device.manufacturer }} - {{ device.model }}</h3>
-        <p class="uuid">{{ device.deviceUUID }}</p>
       </div>
     </ion-col>
     <ion-col size="1" class="bullets" [id]="'testTrigger'+device._id">
       <ion-img  src="assets/images/dots/black/more.png" class="more" alt="more"></ion-img>     
     </ion-col>
+  </ion-row>
+  <ion-row>
+     <p class="uuid">{{ device.deviceUUID }}</p>
   </ion-row>
 
 <app-custom-popover  class="bullets" [triggerId]="'testTrigger'+device._id" [device]="device" (updatePopover)="getUpdateFromPopover($event)"></app-custom-popover>

@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   password: string = '';
   passwordVisible: boolean = false;
   isLoading: boolean = false;
+  
 
   constructor(private authService: AuthService, private toastController: ToastController,private translate: TranslateService ) {
   }
@@ -31,8 +32,6 @@ export class LoginComponent implements OnInit {
         this.authService.setToken(response.token);
         this.authService.setUserData(response.data[0]);
         this.isLoading = false; //Close loading spinner
-        console.log(response);
-
         // Fetch the translated success message
         this.translate.get('login.success_title').subscribe((successTitle: string) => {
           this.translate.get('login.sucess_text').subscribe((successText: string) => {

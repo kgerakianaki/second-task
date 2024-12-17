@@ -6,7 +6,9 @@
   arrow="true" 
   role="dialog"
   aria-labelledby="popoverTitle" 
-  aria-hidden="true">
+  aria-hidden="true"
+  size="auto"
+  id="popover-comp">
   
   <ng-template>
     <ion-content class="popover-content">
@@ -52,5 +54,7 @@
   (deleteClose)="closeDeleteAlert($event)"
   (updateDelete)="updateDeleteHandle($event)"></app-delete-alert>
 
-<app-device-form *ngIf="isEdit" (closeModal)="closeForm($event)" 
-  (updateDeviceList)="update($event)"[deviceEdit]="device"></app-device-form>
+<app-device-form *ngIf="isEdit" 
+  (closeModal)="closeForm($event)" 
+  (updateDeviceList)="update($event)"
+  [deviceEdit]="device"></app-device-form>

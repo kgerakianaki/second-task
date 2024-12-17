@@ -114,7 +114,6 @@ export class DeviceFormComponent implements OnInit {
   }
 
   onFieldChange(field: keyof Device): void {
-    console.log("hhhhhhh")
     // Track changes in the fields and compare with original data
     if (this.device[field] !== this.originalDevice[field]) {
       console.log(this.device[field])
@@ -128,10 +127,7 @@ export class DeviceFormComponent implements OnInit {
     // Only proceed if there are changes in the device data
     const updatedData: Partial<Device> = {};
 
-    
-    console.log(this.changedFields)
     if (this.changedFields.size > 0) {
-
       // Prepare updated fields for the API request
       if (this.device.manufacturer !== this.originalDevice.manufacturer) updatedData['manufacturer'] = this.device.manufacturer;
       if (this.device.model !== this.originalDevice.model) updatedData['model'] = this.device.model;

@@ -18,18 +18,24 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-login *ngIf="!authorized"></app-login>
+  <app-login *ngIf="!authorized">
+  </app-login>
+
   <ion-row class="first-line-home" *ngIf="authorized">
-    <ion-col size="9">
+    <ion-col size="7">
     <app-category-search (search)="getSearch($event)"></app-category-search>
     </ion-col>
-    <ion-col size="3" class="delete" (click)="deleteThem()">
+    <ion-col size="5" class="delete" (click)="deleteThem()">
     <div class="deleteAll">{{'home.deleteAll'|translate}}</div>
     </ion-col>
   </ion-row>
-  <app-device-management *ngIf="authorized" [delete]="deleteAll" [update]="updateList" [searchTerm]="searchTerm"></app-device-management>
-  <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"  (updateDeviceList)="update($event)"
-  ></app-device-form>
+
+  <app-device-management *ngIf="authorized" [delete]="deleteAll" [update]="updateList" [searchTerm]="searchTerm">
+  </app-device-management>
+
+  <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"  (updateDeviceList)="update($event)">
+  </app-device-form>
+
 </ion-content>
 
 

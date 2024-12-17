@@ -11,6 +11,10 @@
     --background: #ffffff;
 }
 
+ion-popover#popover-comp::part(content) {
+  right: 0 !important;
+}
+
 
 .option-grid {
     background-color: #ffffff;

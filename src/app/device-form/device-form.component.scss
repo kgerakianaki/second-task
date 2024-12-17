@@ -16,10 +16,10 @@
 .modal {
     background-color: #ffffff;
     border-radius: 10px;
-    width: 650px;
+    width: 700px;
     max-width: 100%;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    padding-top: 20px;
+    padding-top: 10px;
     position: relative;
 }
 
@@ -28,7 +28,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
     margin-bottom: 20px;
 }
 
@@ -55,6 +56,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    margin-left: 20px;
 }
 
 .modal-body {
@@ -73,7 +75,7 @@
     display: flex;    
     justify-content: flex-start;
     align-items: center;
-    padding: 8px 15px;
+    padding: 8px 24px;
     gap: 10px;
 }
 
@@ -93,7 +95,7 @@ label{
 
 .line-form {
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     gap: 20px;
 }
@@ -102,7 +104,7 @@ label{
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    margin-left: 5px;
+    margin-left: 14px;
 }
 
 .attribute {
@@ -117,8 +119,8 @@ label{
 
 
 .ident {
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 400px;
+    max-width: 600px;
 }
 
 
@@ -128,6 +130,7 @@ ion-input.white-disabled {
     --color: #212121;
     pointer-events: none;
     opacity: 1;
+    width:400px
 }
 
 .not-allowed {
@@ -143,16 +146,17 @@ ion-input.white-disabled {
     text-transform: capitalize;
     border: 2px solid #0E89D0;
     border-radius: 8px;
-    font-size: 16px;
+    font-size: 14px;
     font-weight: 600;
     height: 40px;
     padding: 0;
     cursor: pointer;
+    min-width: 120px;
 }
 
 .second {
     padding: 10px;
-    margin-left: 6px;
+    margin-left: 12px;
 }
 
 .identifier-group {
@@ -164,8 +168,8 @@ ion-input.white-disabled {
 .identifier-group-anagnoristiko {
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
-    width: 80%;
+    gap: 20px;
+    width: 100%;
 }
 
 .footer {
