@@ -14,6 +14,7 @@ export class DeviceManagementComponent implements OnInit {
   loading: boolean = false;
   @Input() searchTerm='';
   @Input() update=false;
+  @Input() delete=false;
   myfilteredDevices: any[] = []; 
   searchOn:boolean=false;
   constructor(private deviceService: DeviceService) { }
@@ -27,8 +28,13 @@ export class DeviceManagementComponent implements OnInit {
     if (changes['update']) {
       if(this.update){
       this.fetchDevices();
-      this.update=false;
+      //this.update=false;
+      console.log(this.update)
       }
+    }
+
+    if(changes['delete']){
+      this.fetchDevices();
     }
 
     if(changes['searchTerm']){

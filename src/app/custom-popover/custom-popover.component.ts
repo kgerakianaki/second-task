@@ -28,12 +28,11 @@ export class CustomPopoverComponent implements OnInit {
   //This method opens the delete alert
   delete(){
     this.isDelete=true;
-
      // Close the popover if it's open
      this.popoverController.dismiss();
   }
   
-//This method closes the alert
+  //This method closes the alert
   closeDeleteAlert($event:boolean){
     this.isDelete=$event;
   }
@@ -44,11 +43,9 @@ export class CustomPopoverComponent implements OnInit {
   }
 
   edit(){
-    console.log("edit()")
     this.isEdit=true;
     // Close the popover if it's open
     this.popoverController.dismiss();
-    
   }
 
   //Output to update the device list

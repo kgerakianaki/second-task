@@ -27,14 +27,14 @@
     <div class="deleteAll">{{'home.deleteAll'|translate}}</div>
     </ion-col>
   </ion-row>
-  <app-device-management *ngIf="authorized" [update]="updateList" [searchTerm]="searchTerm"></app-device-management>
+  <app-device-management *ngIf="authorized" [delete]="deleteAll" [update]="updateList" [searchTerm]="searchTerm"></app-device-management>
   <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"  (updateDeviceList)="update($event)"
   ></app-device-form>
 </ion-content>
 
 
 <app-delete-alert 
- [one]="false"
+  [one]="false"
   *ngIf="isDelete" 
   (deleteClose)="closeDeleteAlert($event)"
   (updateDeleteAll)="updateFromDelete($event)"
