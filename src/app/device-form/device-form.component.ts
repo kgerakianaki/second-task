@@ -45,7 +45,10 @@ export class DeviceFormComponent implements OnInit {
 
   checkData(): boolean {
     // Check if all required fields are filled before submitting
-    return this.device.manufacturer && this.device.model && this.device.platformDevice && this.device.deviceUUID ? true : false;
+     return this.device.manufacturer?.trim() && 
+         this.device.model?.trim() && 
+         this.device.platformDevice?.trim() && 
+         this.device.deviceUUID?.trim() ? true : false;
   }
 
   postDevice(): void {

@@ -12,13 +12,13 @@
 .more {
     width: 25px;
     height: 25px;
+    cursor: pointer;
 }
 
 .header {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    padding: 5px 20px;
 }
 
 hr {
@@ -31,13 +31,11 @@ hr {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 15px;
 }
 
 .uuid {
     color: #707070;
     font-size: 14px;
-    padding: 10px 20px;
 }
 
 .created-at {
@@ -57,4 +55,10 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
+    text-align: center;
+}
+
+ion-row {
+    padding: 10px 10px;
+    display:block;
 }

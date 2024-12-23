@@ -17,10 +17,12 @@
 <app-custom-popover  class="bullets" [triggerId]="'testTrigger'+device._id" [device]="device" (updatePopover)="getUpdateFromPopover($event)"></app-custom-popover>
 
   <hr>
-  <div class="footer">
-    <p class="created-at">{{ created_at }}</p>
-    <div class="platform">
-      {{ device.platformDevice }}
-    </div>
-  </div>
+   <ion-row>
+      <div class="footer">
+        <p class="created-at">{{ created_at }}</p>
+        <div class="platform">
+          {{ device.platformDevice }}
+        </div>
+      </div>
+  </ion-row>
 </div>
