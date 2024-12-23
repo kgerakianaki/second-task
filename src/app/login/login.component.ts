@@ -33,8 +33,8 @@ export class LoginComponent implements OnInit {
         this.authService.setUserData(response.data[0]);
         this.isLoading = false; //Close loading spinner
         // Fetch the translated success message
-        this.translate.get('login.success_title').subscribe((successTitle: string) => {
-          this.translate.get('login.sucess_text').subscribe((successText: string) => {
+        const successTitle = this.translate.instant('login.success_title');
+        const successText = this.translate.instant('login.sucess_text');  
             // Show success notification
             Swal.fire({
               icon: 'success',
@@ -47,14 +47,13 @@ export class LoginComponent implements OnInit {
               background: '#28a745', // Green background for success
               color: '#fff',          
             });
-          });
-        });
+ 
       },
       (error) => {
         console.log('Error occurred during login', error);
 
         // Fetch the translated error message
-        this.translate.get('login.error_title').subscribe((errorTitle: string) => {
+       const errorTitle = this.translate.instant('login.error_title');
           // Close loader and show error notification
           this.isLoading = false;
 
@@ -69,7 +68,7 @@ export class LoginComponent implements OnInit {
             background: '#932222', // Red background for error
             color: '#ffffff',         
           });
-        });
+    
       }
     );
   }

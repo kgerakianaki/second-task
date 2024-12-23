@@ -75,8 +75,8 @@
 
     <div class="footer">
       <ion-button expand="block" class="submit-button" 
-            (click)="deviceEdit && this.changedFields.size > 0 ? updateDevice() : postDevice()"
-            [disabled]="!checkData() || (deviceEdit && this.changedFields.size === 0)">
+            (click)="deviceEdit && changedFields.size > 0 ? updateDevice() : postDevice()"
+            [disabled]="!checkData() || (deviceEdit && changedFields.size === 0)">
             {{ deviceEdit ? ('device-form.save' | translate) : ('device-form.add' | translate) }}
       </ion-button>
     </div>
