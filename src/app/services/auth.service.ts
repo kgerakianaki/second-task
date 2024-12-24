@@ -15,7 +15,7 @@ const headers = new HttpHeaders({
 const loginUrl = `${baseUrl}/api/v1/user/login`;
 
 @Injectable({
-  providedIn: 'root' // This ensures the service is available globally
+  providedIn: "root" // This ensures the service is available globally
 })
 export class AuthService {
   private tokenVar: string = ""; // Store token in memory
@@ -35,8 +35,8 @@ export class AuthService {
   login(email: string, password: string): Promise<any> {
     const data = { email, password };
     return new Promise((resolve, reject) => {
-      this.httpClient.post(loginUrl, data, { headers }).subscribe(
-        (response: any) => {
+      this.httpClient.post<any>(loginUrl, data, { headers }).subscribe(
+        (response) => {
           if (response.status === 200 && response.data) {
             this.setToken(response.token);
             this.setUserData(response.user);
@@ -44,46 +44,50 @@ export class AuthService {
             this.showSuccessNotification();
           } else {
             reject(response);
-            this.showErrorNotification(response.error?.message);
+            this.showErrorNotification(response.error?.message || 'Unexpected error');
           }
         },
         (error) => {
           reject(error);
-          this.showErrorNotification(error.error?.message);
+          this.showErrorNotification(error.error?.message || 'Failed to communicate with server');
         }
       );
     });
   }
 
-  // Save token in memory
+  // Save token in memory and persist it
   setToken(token: string): void {
     this.tokenVar = `Bearer ${token}`;
+    localStorage.setItem('authToken', this.tokenVar); // Persist token
   }
 
-  // Save user data in memory
+  // Save user data in memory and persist it
   setUserData(userData: any): void {
     this.userDataVar = userData;
+    localStorage.setItem('userData', JSON.stringify(userData)); // Persist user data
   }
 
-  // Retrieve token from memory
+  // Retrieve token from memory or localStorage
   getToken(): string {
-    return this.tokenVar;
+    return this.tokenVar || localStorage.getItem('authToken') || '';
   }
 
-  // Retrieve user data from memory
+  // Retrieve user data from memory or localStorage
   getUserData(): any {
-    return this.userDataVar;
+    return this.userDataVar || JSON.parse(localStorage.getItem('userData') || 'null');
   }
 
-  // Check if the user is logged in
+  // Check if the user is logged in (if a token exists)
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
 
-  // Logout the user
+  // Logout the user and clear all related data
   logout(): void {
     this.tokenVar = ""; // Clear token
     this.userDataVar = null; // Clear user data
+    localStorage.removeItem('authToken'); // Clear token from localStorage
+    localStorage.removeItem('userData'); // Clear user data from localStorage
   }
 
   // Show success notification

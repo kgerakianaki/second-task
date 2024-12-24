@@ -11,16 +11,16 @@ const routes: Routes = [
   {
     path: "login",
     loadChildren: () =>
-      import("./pages/login/login.module").then(m => m.LoginPageModule)
-    //canActivate: [AuthGuard] // Protect the management page
+      import("./pages/login/login.module").then(m => m.LoginPageModule),
+    canActivate: [AuthGuard]
   },
   {
     path: "management",
     loadChildren: () =>
       import("./pages/management/management.module").then(
         m => m.ManagementPageModule
-      )
-    //canActivate: [AuthGuard] // Protect the management page
+      ),
+    canActivate: [AuthGuard]
   }
 ];
 
