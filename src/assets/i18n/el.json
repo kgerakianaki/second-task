@@ -17,7 +17,7 @@
         "p-password": "Ο κωδικός σας",
         "connect":"Σύνδεση",
         "success_title": "Επιτυχής Σύνδεση",
-        "sucess_text": "Συνδεθήκατε επιτυχώς!",
+        "success_text": "Συνδεθήκατε επιτυχώς!",
         "error_title":"Αποτυχία Σύνδεσης",
         "invalid-email":"Μη έγκυρη διεύθυνση email"
     },

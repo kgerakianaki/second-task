@@ -1,3 +1,57 @@
+ion-toolbar {
+  --background: #FFFFFF;
+  --color: #212121;
+}
+.inline{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+}
+ion-title {
+  font-family: SF Pro Text;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: left;
+  color: #212121;
+  padding: 0% 1%;
+}
+
+ion-button{
+  --background: #0E89D0;
+  --border-radius: 12px;
+  --box-shadow: none;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: capitalize;
+  width: 60px;
+}
+
+.add-device{
+  min-width: 30px;
+  max-width: 30px;
+}
+
+.delete{
+  display: flex; 
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.deleteAll{
+  font-size:16px;
+  font-weight: bold;
+  color:#932222;
+  cursor: pointer;
+}
+
+.first-line-home{
+  display:flex;
+  align-items: center;
+  justify-content: space-around;
+  padding:20px;
+}
+
 .login {
     min-width: 30%;
     max-width: 100%;
@@ -86,5 +140,5 @@ img {
     position:relative;
     right: 10px;
     cursor: pointer; /* Change the cursor to a pointer on hover */
-  }
+}
 

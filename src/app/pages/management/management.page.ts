@@ -1,35 +1,24 @@
-import { Component, EventEmitter, Input } from "@angular/core";
-import { AuthService } from "../services/auth.service";
-
+import { Component, OnInit } from "@angular/core";
+import { AuthService } from "src/app/services/auth.service";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"]
+  selector: "app-management",
+  templateUrl: "./management.page.html",
+  styleUrls: ["./management.page.scss"]
 })
-export class HomePage {
-  //authorized: boolean = false;
+export class ManagementPage implements OnInit {
   addDevices: boolean = false;
   updateList: boolean = false;
   isDelete: boolean = false;
   searchTerm: string = "";
   deleteAll: boolean = false;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private translate: TranslateService
+  ) {}
 
-  ngOnInit() {
-    //this.checkAuthorization(); // Check authorization when the component is initialized
-  }
-
-  ngAfterViewInit() {}
-
-  ngDoCheck() {
-    //this.checkAuthorization(); // Check authorization whenever the component is checked for changes
-  }
-
-  // Method to check if the user is authorized
-  checkAuthorization() {
-    //this.authorized = this.authService.isLoggedIn(); // Set authorized to true if logged in
-  }
+  ngOnInit() {}
 
   // Method to toggle the visibility of the add devices section
   openAddDevice() {

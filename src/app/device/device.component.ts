@@ -14,7 +14,7 @@ export class DeviceComponent implements OnInit {
   @Output() deviceToManagement=new EventEmitter();
   @Output() updateManagement=new EventEmitter();
   created_at: String = '';
-  constructor(private popocerCtrl: PopoverController) { }
+  constructor() { }
 
   ngOnInit() {
     // Call the changeDateFormat function to format the date on component initialization

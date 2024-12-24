@@ -1,16 +1,27 @@
-import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { NgModule } from "@angular/core";
+import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./guards/auth.guard";
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    path: "",
+    redirectTo: "login", // Redirect to login by default
+    pathMatch: "full"
   },
   {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    path: "login",
+    loadChildren: () =>
+      import("./pages/login/login.module").then(m => m.LoginPageModule)
+    //canActivate: [AuthGuard] // Protect the management page
   },
+  {
+    path: "management",
+    loadChildren: () =>
+      import("./pages/management/management.module").then(
+        m => m.ManagementPageModule
+      )
+    //canActivate: [AuthGuard] // Protect the management page
+  }
 ];
 
 @NgModule({
@@ -19,4 +30,4 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

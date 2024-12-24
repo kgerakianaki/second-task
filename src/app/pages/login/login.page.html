@@ -1,4 +1,21 @@
-<div class="login">
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <div class="inline">
+      <ion-title>
+        {{'home.header'|translate}}
+      </ion-title>
+         </div>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">{{'home.header'|translate}}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+ <div class="login">
   <div class="img-border">
     <img src="assets/images/devices/devices.svg" alt="devices" />
   </div>
@@ -36,3 +53,5 @@
   <ion-loading trigger="open-loading" [isOpen]="isLoading" message="Loading..." [duration]="2500" spinner="circles" mode="ios"></ion-loading>
 
 </div>
+
+</ion-content>

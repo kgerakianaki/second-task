@@ -1,6 +1,6 @@
 <div class="device-container">
 
-  <div class="no-device" *ngIf="this.devices.length==0||(searchOn && this.myfilteredDevices.length==0)">
+  <div class="no-device" *ngIf="devices.length===0||(searchOn && myfilteredDevices.length===0)">
     <img src="assets/images/devices/devices.svg" alt="devices" class="devices" />
 
     <div class="title">
@@ -13,7 +13,7 @@
 
   </div>
 
-  <div class="existing-devices" *ngIf="(searchOn && this.myfilteredDevices.length > 0) || (!searchOn && this.devices.length > 0)"
+  <div class="existing-devices" *ngIf="(searchOn && myfilteredDevices.length > 0) || (!searchOn && devices.length > 0)"
 >
     <div class="your-devices">
       {{'device-management.your-devices'|translate}}

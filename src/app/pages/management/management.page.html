@@ -31,7 +31,7 @@
   </app-device-management>
 
   <app-device-form *ngIf="addDevices" (closeModal)="closeForm($event)"  (updateDeviceList)="update($event)">
-  </app-device-form>
+  </app-device-form> 
 
 </ion-content>
 
@@ -41,4 +41,4 @@
   *ngIf="isDelete" 
   (deleteClose)="closeDeleteAlert($event)"
   (updateDeleteAll)="updateFromDelete($event)"
-  ></app-delete-alert>
+  ></app-delete-alert> 
