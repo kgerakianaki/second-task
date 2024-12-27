@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import Swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
+import { WebService } from "./web.service";
 
 const baseUrl: string = "https://testapiserver.com"; // Server base URL
 const apiKey: string = "9f02f499-cd68-4ede-a3e8-fbb00c3bcde8"; // API Key
@@ -23,7 +24,8 @@ export class AuthService {
 
   constructor(
     private httpClient: HttpClient,
-    private translate: TranslateService
+    private translate: TranslateService,
+    private webService: WebService
   ) {}
 
   /**
@@ -32,29 +34,51 @@ export class AuthService {
    * @param password - User's password
    * @returns Promise<any>
    */
-  login(email: string, password: string): Promise<any> {
+  // login(email: string, password: string): Promise<any> {
+  //   const data = { email, password };
+  //   return new Promise((resolve, reject) => {
+  //     this.httpClient.post<any>(loginUrl, data, { headers }).subscribe(
+  //       (response) => {
+  //         if (response.status === 200 && response.data) {
+  //           this.setToken(response.token);
+  //           this.setUserData(response.user);
+  //           resolve(response);
+  //           this.showSuccessNotification();
+  //         } else {
+  //           reject(response);
+  //           this.showErrorNotification(response.error?.message || 'Unexpected error');
+  //         }
+  //       },
+  //       (error) => {
+  //         reject(error);
+  //         this.showErrorNotification(error.error?.message || 'Failed to communicate with server');
+  //       }
+  //     );
+  //   });
+  // }
+
+   login(email: string, password: string): Promise<any> {
     const data = { email, password };
     return new Promise((resolve, reject) => {
-      this.httpClient.post<any>(loginUrl, data, { headers }).subscribe(
-        (response) => {
+      this.webService
+        .post("/api/v1/user/login", data)
+        .then((response) => {
           if (response.status === 200 && response.data) {
             this.setToken(response.token);
             this.setUserData(response.user);
-            resolve(response);
             this.showSuccessNotification();
+            resolve(response);
           } else {
+            this.showErrorNotification(response.error?.message || "Unexpected error");
             reject(response);
-            this.showErrorNotification(response.error?.message || 'Unexpected error');
           }
-        },
-        (error) => {
+        })
+        .catch((error) => {
+          this.showErrorNotification(error.error?.message || "Failed to communicate with server");
           reject(error);
-          this.showErrorNotification(error.error?.message || 'Failed to communicate with server');
-        }
-      );
+        });
     });
   }
-
   // Save token in memory and persist it
   setToken(token: string): void {
     this.tokenVar = `Bearer ${token}`;

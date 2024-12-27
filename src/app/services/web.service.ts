@@ -1,6 +1,5 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -28,39 +27,39 @@ export class WebService {
     return headers;
   }
 
-  // GET request method
-  get(endpoint: string, additionalHeaders?: HttpHeaders): Observable<any> {
+  // GET request method that returns a Promise
+  get(endpoint: string, additionalHeaders?: HttpHeaders): Promise<any> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = this.createHeaders(additionalHeaders);
-    return this.http.get<any>(url, { headers });
+    return this.http.get<any>(url, { headers }).toPromise();
   }
 
-  // POST request method
+  // POST request method that returns a Promise
   post(
     endpoint: string,
     data: any,
     additionalHeaders?: HttpHeaders
-  ): Observable<any> {
+  ): Promise<any> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = this.createHeaders(additionalHeaders);
-    return this.http.post<any>(url, data, { headers });
+    return this.http.post<any>(url, data, { headers }).toPromise();
   }
 
-  // PATCH request method
+  // PATCH request method that returns a Promise
   patch(
     endpoint: string,
     data: any,
     additionalHeaders?: HttpHeaders
-  ): Observable<any> {
+  ): Promise<any> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = this.createHeaders(additionalHeaders);
-    return this.http.patch<any>(url, data, { headers });
+    return this.http.patch<any>(url, data, { headers }).toPromise();
   }
 
-  // DELETE request method
-  delete(endpoint: string, additionalHeaders?: HttpHeaders): Observable<any> {
+  // DELETE request method that returns a Promise
+  delete(endpoint: string, additionalHeaders?: HttpHeaders): Promise<any> {
     const url = `${this.baseUrl}${endpoint}`;
     const headers = this.createHeaders(additionalHeaders);
-    return this.http.delete<any>(url, { headers });
+    return this.http.delete<any>(url, { headers }).toPromise();
   }
 }

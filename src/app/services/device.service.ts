@@ -1,59 +1,102 @@
-import { Injectable } from '@angular/core';
-import { WebService } from './web.service';
-import { Observable } from 'rxjs';
-import { AuthService } from './auth.service';
-import { HttpHeaders } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { WebService } from "./web.service";
+import { AuthService } from "./auth.service";
+import { HttpHeaders } from "@angular/common/http";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root"
 })
 export class DeviceService {
-  endpoint = '/api/v1/devices';
- headers:any;
-  
-  constructor(private webService: WebService, private authService: AuthService) { 
+  endpoint = "/api/v1/devices";
+  headers: any;
+
+  constructor(
+    private webService: WebService,
+    private authService: AuthService
+  ) {
     let token = this.authService.getToken(); // Get token from AuthService
     this.headers = new HttpHeaders({
-      'Authorization': `${token}`
+      Authorization: `${token}`
     });
   }
 
-  //This method get the list of devices
-  getDevices(): Observable<any> {
-
-    return this.webService.get(this.endpoint, this.headers);
+  // This method gets the list of devices
+  getDevices(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.webService
+        .get(this.endpoint, this.headers)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-  //This method post a device
-  postDevice(deviceData: any): Observable<any>{
-     // Define the body of the request
-     const body = {
+  // This method posts a device
+  postDevice(deviceData: any): Promise<any> {
+    const body = {
       manufacturer: deviceData.manufacturer,
       model: deviceData.model,
       platformDevice: deviceData.platformDevice,
       deviceUUID: deviceData.deviceUUID
     };
-    return this.webService.post(this.endpoint,body,this.headers)
+    return new Promise((resolve, reject) => {
+      this.webService
+        .post(this.endpoint, body, this.headers)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   // This method deletes a device by its _id
-  deleteDevice(deviceId: string): Observable<any> {
-    const url = `${this.endpoint}/${deviceId}`; //endpoint for deleting
-    return this.webService.delete(url, this.headers)
+  deleteDevice(deviceId: string): Promise<any> {
+    const url = `${this.endpoint}/${deviceId}`;
+    return new Promise((resolve, reject) => {
+      this.webService
+        .delete(url, this.headers)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
-
   // Post method to delete all devices
-  deleteAllDevices(): Observable<any> {
+  deleteAllDevices(): Promise<any> {
     const url = `${this.endpoint}/deleteAll`; // URL for deleting all devices
     const body = {}; // Empty body
-    return this.webService.post(url, body, this.headers);  // Sending POST request with empty body
+    return new Promise((resolve, reject) => {
+      this.webService
+        .post(url, body, this.headers)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
 
   // Method to update a device (PATCH request)
-  updateDevice(deviceId: string, updatedData: any): Observable<any> {
+  updateDevice(deviceId: string, updatedData: any): Promise<any> {
     const url = `${this.endpoint}/${deviceId}`; // Endpoint to update device
-    return this.webService.patch(url, updatedData, this.headers); // Send PATCH request
+    return new Promise((resolve, reject) => {
+      this.webService
+        .patch(url, updatedData, this.headers)
+        .then(response => {
+          resolve(response);
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
   }
-
 }
