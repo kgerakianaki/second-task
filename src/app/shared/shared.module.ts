@@ -3,13 +3,12 @@ import { CommonModule } from "@angular/common";
 import { TranslateModule } from "@ngx-translate/core";
 import { IonicModule } from "@ionic/angular";
 import { FormsModule } from "@angular/forms";
-import { DeviceManagementComponent } from "../device-management/device-management.component";
-import { DeviceComponent } from "../device/device.component";
-import { DeviceFormComponent } from "../device-form/device-form.component";
-import { CustomPopoverComponent } from "../custom-popover/custom-popover.component";
-import { DeleteAlertComponent } from "../delete-alert/delete-alert.component";
-import { CategorySearchComponent } from "../category-search/category-search.component";
-import { LoginPage } from "../pages/login/login.page";
+import { DeviceManagementComponent } from "../components/device-management/device-management.component";
+import { DeviceComponent } from "../components/device/device.component";
+import { DeviceFormComponent } from "../components/device-form/device-form.component";
+import { CustomPopoverComponent } from "../components/custom-popover/custom-popover.component";
+import { DeleteAlertComponent } from "../components/delete-alert/delete-alert.component";
+import { CategorySearchComponent } from "../components/category-search/category-search.component";
 
 @NgModule({
   declarations: [

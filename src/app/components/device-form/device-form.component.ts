@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
-import { Device } from '../models/device.model';
-import { DeviceService } from '../services/device.service';
+import { Device } from '../../models/device.model';
+import { DeviceService } from '../../services/device.service';
 import { TranslateService } from '@ngx-translate/core';
 import Swal from 'sweetalert2';
 

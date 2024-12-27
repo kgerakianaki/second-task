@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Device } from '../models/device.model';
-import { SharedModule } from '../shared/shared.module';
+import { Device } from '../../models/device.model';
+import { SharedModule } from '../../shared/shared.module';
 import { PopoverController } from '@ionic/angular';
 import { CustomPopoverComponent } from '../custom-popover/custom-popover.component';
 

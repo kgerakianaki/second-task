@@ -6,7 +6,7 @@ import {
   output,
   Output
 } from "@angular/core";
-import { DeviceService } from "../services/device.service";
+import { DeviceService } from "../../services/device.service";
 import Swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
 

@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, SimpleChanges, OnChanges } from '@angular/core';
-import { DeviceService } from '../services/device.service';
-import { Device } from '../models/device.model';
+import { DeviceService } from '../../services/device.service';
+import { Device } from '../../models/device.model';
 
 @Component({
   selector: 'app-device-management',
