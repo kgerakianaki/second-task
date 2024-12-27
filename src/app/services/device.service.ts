@@ -2,6 +2,8 @@ import { Injectable } from "@angular/core";
 import { WebService } from "./web.service";
 import { AuthService } from "./auth.service";
 import { HttpHeaders } from "@angular/common/http";
+import Swal from "sweetalert2";
+import { TranslateService } from "@ngx-translate/core";
 
 @Injectable({
   providedIn: "root"
@@ -12,6 +14,7 @@ export class DeviceService {
 
   constructor(
     private webService: WebService,
+    private translate: TranslateService,
     private authService: AuthService
   ) {
     let token = this.authService.getToken(); // Get token from AuthService
@@ -47,13 +50,46 @@ export class DeviceService {
         .post(this.endpoint, body, this.headers)
         .then(response => {
           resolve(response);
+          this.postSuccess();
         })
         .catch(error => {
           reject(error);
+          this.postError(error);
         });
     });
   }
 
+  private postError(error: any) {
+    // Error toast with SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: this.translate.instant("device-form.create-error-title"),
+      text:
+        error.message ||
+        this.translate.instant("device-form.create-error-text"),
+      timer: 3000,
+      showConfirmButton: false,
+      position: "top",
+      toast: true,
+      background: "#932222", // Red background for error
+      color: "#fff" // White text
+    });
+  }
+
+  private postSuccess() {
+    // Success toast with SweetAlert2
+    Swal.fire({
+      icon: "success",
+      title: this.translate.instant("device-form.create-success-title"),
+      text: this.translate.instant("device-form.create-success-text"),
+      timer: 3000,
+      showConfirmButton: false,
+      position: "top",
+      toast: true,
+      background: "#28a745", // Green background for success
+      color: "#fff" // White text
+    });
+  }
   // This method deletes a device by its _id
   deleteDevice(deviceId: string): Promise<any> {
     const url = `${this.endpoint}/${deviceId}`;
@@ -62,10 +98,42 @@ export class DeviceService {
         .delete(url, this.headers)
         .then(response => {
           resolve(response);
+          this.deleteSuccess();
         })
         .catch(error => {
           reject(error);
+          this.deleteError(error);
         });
+    });
+  }
+
+  private deleteError(error: any) {
+    // Error: Show error notification
+    Swal.fire({
+      icon: "error",
+      title: this.translate.instant("alert.title_delete_notif"),
+      text: error.message,
+      background: "#932222", // Red color background
+      color: "#fff", // White text color
+      timer: 3000, // Timeout after 3 seconds
+      showConfirmButton: false,
+      position: "top",
+      toast: true
+    });
+  }
+
+  private deleteSuccess() {
+    // Success: Show success notification
+    Swal.fire({
+      icon: "success",
+      title: this.translate.instant("alert.title_delete_notif"),
+      text: this.translate.instant("alert.success_delete"),
+      background: "#28a745", // Green color for success
+      color: "#fff", // White text color
+      timer: 3000, // Timeout after 3 seconds
+      showConfirmButton: false,
+      position: "top",
+      toast: true
     });
   }
 
@@ -78,9 +146,11 @@ export class DeviceService {
         .post(url, body, this.headers)
         .then(response => {
           resolve(response);
+          this.deleteSuccess();
         })
         .catch(error => {
           reject(error);
+          this.deleteError(error);
         });
     });
   }
@@ -93,10 +163,43 @@ export class DeviceService {
         .patch(url, updatedData, this.headers)
         .then(response => {
           resolve(response);
+          this.updateSuccess();
         })
         .catch(error => {
           reject(error);
+          this.updateError(error);
         });
+    });
+  }
+
+  private updateError(error: any) {
+    // Error toast with SweetAlert2
+    Swal.fire({
+      icon: "error",
+      title: this.translate.instant("device-form.update-error-title"),
+      text:
+        error.message ||
+        this.translate.instant("device-form.update-error-text"),
+      timer: 3000,
+      showConfirmButton: false,
+      position: "top",
+      toast: true,
+      background: "#932222", // Red background for error
+      color: "#fff" // White text
+    });
+  }
+  private updateSuccess() {
+    // Success toast with SweetAlert2
+    Swal.fire({
+      icon: "success",
+      title: this.translate.instant("device-form.update-success-title"),
+      text: this.translate.instant("device-form.update-success-text"),
+      timer: 3000,
+      showConfirmButton: false,
+      position: "top",
+      toast: true,
+      background: "#28a745", // Green background for success
+      color: "#fff" // White text
     });
   }
 }

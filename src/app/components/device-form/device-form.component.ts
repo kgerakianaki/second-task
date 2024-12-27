@@ -58,115 +58,20 @@ export class DeviceFormComponent implements OnInit {
     if (this.checkData()) {
 
       this.deviceService.postDevice(this.device)
-  .then((response) => {
-    if (response.status === 201) {
-      this.close();  // Close the modal on success
-      this.updateList();  // Update the device list
-      this.isLoading = false;  // Stop the loader
-      console.log('Device created successfully:', response);
-
-      // Success toast with SweetAlert2
-      Swal.fire({
-        icon: 'success',
-        title: this.translate.instant('device-form.create-success-title'),
-        text: this.translate.instant('device-form.create-success-text'),
-        timer: 3000,
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        background: '#28a745', // Green background for success
-        color: '#fff', // White text
+      .then((response) => {
+        if (response.status === 201) {
+          this.close();  // Close the modal on success
+          this.updateList();  // Update the device list
+          this.isLoading = false;  // Stop the loader
+          console.log('Device created successfully:', response);
+        } else {
+          console.error('Error creating device', response.message);
+        }
+      })
+      .catch((error) => {
+        console.error('Error creating device:', error);
+        this.isLoading = false;  // Stop the loader
       });
-    } else {
-      console.error('Error creating device', response.message);
-
-      // Error toast with SweetAlert2
-      Swal.fire({
-        icon: 'error',
-        title: this.translate.instant('device-form.create-error-title'),
-        text: response.message || this.translate.instant('device-form.create-error-text'),
-        timer: 3000,
-        showConfirmButton: false,
-        position: 'top',
-        toast: true,
-        background: '#932222', // Red background for error
-        color: '#fff', // White text
-      });
-    }
-  })
-  .catch((error) => {
-    console.error('Error creating device:', error);
-
-    // Error toast with SweetAlert2
-    Swal.fire({
-      icon: 'error',
-      title: this.translate.instant('device-form.create-error-title'),
-      text: error.message || this.translate.instant('device-form.create-error-text'),
-      timer: 3000,
-      showConfirmButton: false,
-      position: 'top',
-      toast: true,
-      background: '#932222', // Red background for error
-      color: '#fff', // White text
-    });
-    this.isLoading = false;  // Stop the loader
-  });
-
-      // this.deviceService.postDevice(this.device).subscribe(
-      //   (response) => {
-      //     if (response.status === 201) {
-      //       this.close();  // Close the modal on success
-      //       this.updateList();  // Update the device list
-      //       this.isLoading = false;  // Stop the loader
-      //       console.log('Device created successfully:', response);
-  
-      //       // Success toast with SweetAlert2
-      //       Swal.fire({
-      //         icon: 'success',
-      //         title: this.translate.instant('device-form.create-success-title'),
-      //         text: this.translate.instant('device-form.create-success-text'),
-      //         timer: 3000,
-      //         showConfirmButton: false,
-      //         position: 'top',
-      //         toast: true,
-      //         background: '#28a745', // Green background for success
-      //         color: '#fff', // White text
-      //       });
-      //     } else {
-      //       console.error('Error creating device', response.message);
-  
-      //       // Error toast with SweetAlert2
-      //       Swal.fire({
-      //         icon: 'error',
-      //         title: this.translate.instant('device-form.create-error-title'),
-      //         text: response.message || this.translate.instant('device-form.create-error-text'),
-      //         timer: 3000,
-      //         showConfirmButton: false,
-      //         position: 'top',
-      //         toast: true,
-      //         background: '#932222', // Red background for error
-      //         color: '#fff', // White text
-      //       });
-      //     }
-      //   },
-      //   (error) => {
-      //     console.error('Error creating device:', error);
-  
-      //     // Error toast with SweetAlert2
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: this.translate.instant('device-form.create-error-title'),
-      //       text: error.message || this.translate.instant('device-form.create-error-text'),
-      //       timer: 3000,
-      //       showConfirmButton: false,
-      //       position: 'top',
-      //       toast: true,
-      //       background: '#932222', // Red background for error
-      //       color: '#fff', // White text
-      //     });
-      //     this.isLoading = false;  // Stop the loader
-      //   }
-      // );
     } else {
       this.isLoading = false;  // Stop the loader if data is incomplete
     }
@@ -203,35 +108,11 @@ export class DeviceFormComponent implements OnInit {
               this.close();  // Close the modal after updating
               this.updateList();  // Update the device list
 
-              // Success toast with SweetAlert2
-              Swal.fire({
-                icon: 'success',
-                title: this.translate.instant('device-form.update-success-title'),
-                text: this.translate.instant('device-form.update-success-text'),
-                timer: 3000,
-                showConfirmButton: false,
-                position: 'top',
-                toast: true,
-                background: '#28a745', // Green background for success
-                color: '#fff', // White text
-              });
             })
             .catch((error) => {
               this.isLoading = false;
               console.error('Error updating device:', error);
 
-              // Error toast with SweetAlert2
-              Swal.fire({
-                icon: 'error',
-                title: this.translate.instant('device-form.update-error-title'),
-                text: error.message || this.translate.instant('device-form.update-error-text'),
-                timer: 3000,
-                showConfirmButton: false,
-                position: 'top',
-                toast: true,
-                background: '#932222', // Red background for error
-                color: '#fff', // White text
-              });
             });
 
         }

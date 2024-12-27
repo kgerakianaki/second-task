@@ -56,146 +56,24 @@ export class DeleteAlertComponent implements OnInit {
     if (this.one) {
       // Confirm deletion of the single device
       this.isLoading = true; // Show loading state
-      // this.deviceService.deleteDevice(this.device._id).subscribe(response => {
-      //   this.isLoading = false; // Hide loading state
-      //   if (response.status === 200) {
-      //     // Success: Show success notification
-      //     Swal.fire({
-      //       icon: 'success',
-      //       title: this.translate.instant('alert.title_delete_notif'),
-      //       text: this.translate.instant('alert.success_delete'),
-      //       background: '#28a745', // Green color for success
-      //       color: '#fff', // White text color
-      //       timer: 3000, // Timeout after 3 seconds
-      //       showConfirmButton: false,
-      //       position: 'top',
-      //       toast: true,
-      //     });
-      //     this.updateDelete.emit(true); // Successfully deleted
-      //   } else {
-      //     // Error: Show error notification
-      //     Swal.fire({
-      //       icon: 'error',
-      //       title: this.translate.instant('alert.title_delete_notif'),
-      //       text: response.message,
-      //       background: '#932222', // Red color background
-      //       color: '#fff', // White text color
-      //       timer: 3000, // Timeout after 3 seconds
-      //       showConfirmButton: false,
-      //       position: 'top',
-      //       toast: true,
-      //     });
-      //   }
-      // });
+
       this.deviceService
         .deleteDevice(this.device._id)
         .then(response => {
           this.isLoading = false; // Hide loading state
           if (response.status === 200) {
-            // Success: Show success notification
-            Swal.fire({
-              icon: "success",
-              title: this.translate.instant("alert.title_delete_notif"),
-              text: this.translate.instant("alert.success_delete"),
-              background: "#28a745", // Green color for success
-              color: "#fff", // White text color
-              timer: 3000, // Timeout after 3 seconds
-              showConfirmButton: false,
-              position: "top",
-              toast: true
-            });
             this.updateDelete.emit(true); // Successfully deleted
-          } else {
-            // Error: Show error notification
-            Swal.fire({
-              icon: "error",
-              title: this.translate.instant("alert.title_delete_notif"),
-              text: response.message,
-              background: "#932222", // Red color background
-              color: "#fff", // White text color
-              timer: 3000, // Timeout after 3 seconds
-              showConfirmButton: false,
-              position: "top",
-              toast: true
-            });
           }
         })
         .catch(error => {
           this.isLoading = false; // Hide loading state
           console.error("Error deleting device:", error);
-
-          // Error: Show error notification
-          Swal.fire({
-            icon: "error",
-            title: this.translate.instant("alert.title_delete_notif"),
-            text: error.message || this.translate.instant("alert.error_delete"),
-            background: "#932222", // Red color background
-            color: "#fff", // White text color
-            timer: 3000, // Timeout after 3 seconds
-            showConfirmButton: false,
-            position: "top",
-            toast: true
-          });
         });
     } else {
       // Confirm deletion of all devices
       this.isLoading = true; // Show loading state
       // Subscribe to get the list of devices
       let dontDelete = true;
-      //   this.deviceService.getDevices().subscribe(devices => {
-      //     // Check if there are devices to delete
-      //     console.log(devices.data.length);
-      //     if (devices.data.length == 0) {
-      //       dontDelete = false;
-      //       // Show warning if no devices are available
-      //       Swal.fire({
-      //         icon: "warning",
-      //         title: this.translate.instant("alert.title_delete_notif"),
-      //         text: this.translate.instant("alert.no_devices_to_delete"),
-      //         background: "#ffffff",
-      //         color: "#FF7F50",
-      //         timer: 3000, // Timeout after 3 seconds
-      //         showConfirmButton: false,
-      //         position: "top",
-      //         toast: true
-      //       });
-      //       this.isLoading = false; // Hide loading state
-      //       return; // Stop further execution if no devices
-      //     } else {
-      //       this.deviceService.deleteAllDevices().subscribe(response => {
-      //         this.isLoading = false; // Hide loading state
-      //         if (response.status === 200) {
-      //           // Success: Show success notification
-      //           Swal.fire({
-      //             icon: "success",
-      //             title: this.translate.instant("alert.title_delete_notif"),
-      //             text: this.translate.instant("alert.success_delete"),
-      //             background: "#28a745", // Green color for success
-      //             color: "#fff", // White text color
-      //             timer: 3000, // Timeout after 3 seconds
-      //             showConfirmButton: false,
-      //             position: "top",
-      //             toast: true
-      //           });
-      //           this.updateDeleteAll.emit(true); // Successfully deleted all devices
-      //         } else {
-      //           // Error: Show error notification
-      //           Swal.fire({
-      //             icon: "error",
-      //             title: this.translate.instant("alert.title_delete_notif"),
-      //             text: response.message,
-      //             background: "#932222", // Red color background
-      //             color: "#fff", // White text color
-      //             timer: 3000, // Timeout after 3 seconds
-      //             showConfirmButton: false,
-      //             position: "top",
-      //             toast: true
-      //           });
-      //         }
-      //       });
-      //     }
-      //   });
-
       this.deviceService
         .getDevices()
         .then(devices => {
@@ -223,72 +101,18 @@ export class DeleteAlertComponent implements OnInit {
               .then(response => {
                 this.isLoading = false; // Hide loading state
                 if (response.status === 200) {
-                  // Success: Show success notification
-                  Swal.fire({
-                    icon: "success",
-                    title: this.translate.instant("alert.title_delete_notif"),
-                    text: this.translate.instant("alert.success_delete"),
-                    background: "#28a745", // Green color for success
-                    color: "#fff", // White text color
-                    timer: 3000, // Timeout after 3 seconds
-                    showConfirmButton: false,
-                    position: "top",
-                    toast: true
-                  });
                   this.updateDeleteAll.emit(true); // Successfully deleted all devices
-                } else {
-                  // Error: Show error notification
-                  Swal.fire({
-                    icon: "error",
-                    title: this.translate.instant("alert.title_delete_notif"),
-                    text: response.message,
-                    background: "#932222", // Red color background
-                    color: "#fff", // White text color
-                    timer: 3000, // Timeout after 3 seconds
-                    showConfirmButton: false,
-                    position: "top",
-                    toast: true
-                  });
                 }
               })
               .catch(error => {
                 this.isLoading = false; // Hide loading state
                 console.error("Error deleting all devices:", error);
-
-                // Error: Show error notification
-                Swal.fire({
-                  icon: "error",
-                  title: this.translate.instant("alert.title_delete_notif"),
-                  text:
-                    error.message ||
-                    this.translate.instant("alert.error_delete"),
-                  background: "#932222", // Red color background
-                  color: "#fff", // White text color
-                  timer: 3000, // Timeout after 3 seconds
-                  showConfirmButton: false,
-                  position: "top",
-                  toast: true
-                });
               });
           }
         })
         .catch(error => {
           this.isLoading = false; // Hide loading state
           console.error("Error fetching devices:", error);
-          // Error: Show error notification
-          Swal.fire({
-            icon: "error",
-            title: this.translate.instant("alert.title_delete_notif"),
-            text:
-              error.message ||
-              this.translate.instant("alert.error_fetch_devices"),
-            background: "#932222", // Red color background
-            color: "#fff", // White text color
-            timer: 3000, // Timeout after 3 seconds
-            showConfirmButton: false,
-            position: "top",
-            toast: true
-          });
         });
     }
   }
